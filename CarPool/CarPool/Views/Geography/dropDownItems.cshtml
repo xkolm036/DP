@@ -1,0 +1,43 @@
+﻿
+
+
+
+@foreach (Data.Models.City city in (List<Data.Models.City>)ViewData["City"])
+{
+    <div class="list-group-item">
+        <i class="fa fa-city text-primary "></i>
+        <a href="#" data-content="City">@city.cityName</a>
+        <br />
+        <span>Okres: @city.regionName</span>
+        <br>
+    </div>
+}
+
+
+    @foreach (Data.Models.School sc in (List<Data.Models.School>)ViewData["School"])
+    {
+        <div class="list-group-item">
+            <i class="fas fa-user-graduate"></i>
+            <a href="#" data-content="School">@sc.name</a>
+            <br>
+        </div>
+    }
+
+
+@foreach (Data.Models.City city in (List<Data.Models.City>)ViewData["Street"])
+{
+    <div class="list-group-item">
+        <i class="fas fa-map-marker-alt "></i>
+        <a href="#" data-content="Street">@city.print()</a>
+        <br>
+    </div>
+}
+
+
+
+
+
+
+
+
+

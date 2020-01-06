@@ -1,0 +1,116 @@
+﻿@using Data.Models
+@section Scripts{
+    <script src="~/js/GeoInput.js"></script>
+    <script src="~/js/DateTimePicker.js"></script>
+
+}
+
+@section CSS{
+    <link rel="stylesheet" href="~/css/HomePage.css" />
+}
+
+@model Route
+
+
+    <h1 class="mt-3">Vytvořit jízdu</h1>
+
+    <form asp-controller="Home" asp-action="CreateRoute" method="post">
+
+
+        <div class="row mt-3">
+            <div class="col-sm-8">
+                <div class="input-group mb-1 ">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text same-width">Odkud</span>
+                    </div>
+                    <input id="start" asp-for="@Model.startDest" class="form-control focusSelect adress_inp" placeholder="zadejte alepon tři znaky" autocomplete="off" data-target="input-Sorce-Content">
+                </div>
+                <span class="text-danger" asp-validation-for="@Model.startDest"> </span>
+                <div id="input-Sorce-Content" class="list-group d-none position-absolute ml-md-5 hiddenDiv">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </div>
+
+        <div>
+
+            <div class="row mt-2">
+                <div class="col-sm-8">
+                    <div class="input-group mb-1 ">
+                        <div class="input-group-prepend ">
+                            <span class="input-group-text same-width">Kam</span>
+                        </div>
+
+                        <input asp-for="@Model.finalDestination" class="form-control focusSelect adress_inp" placeholder="zadejte alepon tři znaky" autocomplete="off" data-target="input-Destination-Content">
+                    </div>
+                    <span class="text-danger" asp-validation-for="@Model.finalDestination"> </span>
+                    <div id="input-Destination-Content" class="list-group d-none position-absolute ml-md-5 hiddenDiv">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <label for="date">Datum:</label>
+                <div class="input-group mb-1 ">
+                    <div class="input-group-prepend ">
+                        <div class="input-group-text"><span class="fa fa-calendar"></span></div>
+                    </div>
+                    <input id="date" asp-for="@Model.date" type="text" class="form-control dateinput">
+                </div>
+                <span class="text-danger" asp-validation-for="@Model.date"> </span>
+            </div>
+
+            <div class="col-sm-4">
+                <label for="time">Čas:</label>
+                <div class="input-group mb-1 ">
+                    <div class="input-group-prepend ">
+                        <div class="input-group-text"><span class="fa fa-clock"></span></div>
+                    </div>
+                    <input id="time" asp-for="@Model.time" type="text" class="form-control timeinput">
+                </div>
+                <span class="text-danger" asp-validation-for="@Model.time"> </span>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="count">Počet míst</label>
+                    <select asp-for="@Model.Seats" class="form-control" id="count">
+                        @for (int i = 1; i <= 10; i++)
+                        {
+                            <option>@i</option>
+                        }
+                    </select>
+                </div>
+                <span class="text-danger" asp-validation-for="@Model.Seats"> </span>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="Car">Auto</label>
+                    <select asp-for="@Model.Seats" class="form-control" id="Car">
+                        <option>octa</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-3">
+                <button type="submit" class="btn btn-primary mt-4 ">Vytvořit</button>
+            </div>
+        </div>
+
+    </form>
+
+
+
+
+

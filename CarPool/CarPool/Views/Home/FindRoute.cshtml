@@ -1,0 +1,35 @@
+﻿@using Data.Models
+
+
+    <h2>Nalezené jízdy</h2>
+    
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Datum</th>
+                <th>Cas</th>
+                <th>Odkud</th>
+                <th>Kam</th>
+                <th>Volná Místa</th>
+                <th>Cena</th>
+                <th> </th>
+             
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (Route RouteFromDb in (List<Route>)ViewData["Routes"])
+            {
+            <tr>
+                <td>@RouteFromDb.date</td>
+                <td>@RouteFromDb.time</td>
+                <td>@RouteFromDb.startDest</td>
+                <td>@RouteFromDb.finalDestination</td>
+                <td>@RouteFromDb.Seats</td>
+                <td>@RouteFromDb.price</td>
+                <td>Pripojit se</td>
+            </tr>
+
+            }
+        </tbody>
+    </table>
