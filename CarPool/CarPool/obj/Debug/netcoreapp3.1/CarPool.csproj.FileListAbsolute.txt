@@ -151,3 +151,6 @@ D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\Razor\Areas\
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\_ViewImports.cshtml.g.cs
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
+D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\ForgotPassword.cshtml.g.cs
+D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\Razor\Views\Shared\LoginModal.cshtml.g.cs
+D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\Razor\Views\Shared\RegisterModal.cshtml.g.cs

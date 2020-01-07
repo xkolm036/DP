@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
+
 namespace CarPool
 {
     public class Startup
@@ -36,11 +37,10 @@ namespace CarPool
                 options.Password.RequiredLength = 8;
                 options.Password.RequireUppercase = false;
                 options.Password.RequireNonAlphanumeric = false;
-
-
             }
             )
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.ConfigureApplicationCookie(options => options.LoginPath = "/find");
             services.AddControllersWithViews();
             services.AddRazorPages();
 

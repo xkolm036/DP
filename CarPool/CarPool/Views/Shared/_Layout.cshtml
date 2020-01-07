@@ -1,4 +1,5 @@
 ﻿<!DOCTYPE html>
+@using CarPool.Areas.Identity.Pages.Account
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -46,11 +47,28 @@
         </main>
     </div>
 
+    <partial name="LoginModal" />
+    <partial name="RegisterModal" />
+
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2020 - CarPool - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+    <!--Zde-->
+
+
+
+
+
+
+
+
+
+
+
+
+
     <environment include="Development">
         <script src="~/lib/jquery/jquery.js"></script>
         <script src="~/lib/moment.js/moment.min.js"></script>

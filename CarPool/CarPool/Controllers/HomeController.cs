@@ -9,6 +9,7 @@ using CarPool.Models;
 using Data.Models;
 using Data;
 using Microsoft.AspNetCore.Authorization;
+using CarPool.Areas.Identity.Pages.Account;
 
 namespace CarPool.Controllers
 {
@@ -17,10 +18,16 @@ namespace CarPool.Controllers
 
         [Route("/")]
         [Route("/Find")]
-        public IActionResult Find(Route r)
+        public IActionResult Find(Route r ,string ReturnUrl)
         {
 
             ModelState.Clear(); // zamezi zobrazeni validačni hlašky po prvním spuštení
+
+            if (ReturnUrl != null)
+            {
+                ViewData["Login"] = true;
+            }
+
 
             return View();
         }
@@ -35,19 +42,18 @@ namespace CarPool.Controllers
             ViewData["Routes"] = DB.FindRoutes(r);
 
 
-
             return View();
         }
 
-
-        public IActionResult test(Route r)
+       
+        public IActionResult test()
         {
 
-
-            return RedirectToAction("Index", "Home");
+            return PartialView("LoginModal");
         }
-        [Route("/Create")]
 
+
+        [Route("/Create")]
         [Authorize]
         public IActionResult Create()
         {
