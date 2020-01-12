@@ -40,7 +40,7 @@ namespace CarPool
             }
             )
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.ConfigureApplicationCookie(options => options.LoginPath = "/find");
+            services.ConfigureApplicationCookie(options => options.LoginPath = "/Identity/Account/Login");
             services.AddControllersWithViews();
             services.AddRazorPages();
 

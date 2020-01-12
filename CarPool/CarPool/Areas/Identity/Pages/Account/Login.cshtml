@@ -1,70 +1,52 @@
 ﻿@page
-    @model LoginModel
-    <!-- The Modal -->
-    <div class="modal" id="modalLogin">
-        <div class="modal-dialog">
-            <div class="modal-content">
+@model LoginModel
 
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Je vyžadováno přihlášení</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
 
-                <!-- Modal body -->
-                <form id="account" method="post">
+@{
+    ViewData["Title"] = "Přihlášení";
+}
 
-                    <div class="modal-body">
+<h1>@ViewData["Title"]</h1>
 
-                        <div asp-validation-summary="All" class="text-danger"></div>
-                        <div class="form-group">
-                            <label asp-for="Input.Email"></label>
-                            <input asp-for="Input.Email" class="form-control" />
-                            <span asp-validation-for="Input.Email" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="Input.Password"></label>
-                            <input asp-for="Input.Password" class="form-control" />
-                            <span asp-validation-for="Input.Password" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <div class="checkbox">
-                                <label asp-for="Input.RememberMe">
-                                    <input asp-for="Input.RememberMe" />
-                                    @Html.DisplayNameFor(m => m.Input.RememberMe)
-                                </label>
-                            </div>
-                        </div>
+<form id="account" method="post">
 
-                        <div class="form-group">
-                            <p>
-                                <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                            </p>
-                            <p>
-                                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                            </p>
-                        </div>
 
-                    </div>
-
-                    <!-- Modal footer -->
-                    <div class="modal-footer  justify-content-between">
-                        <button type="submit" class="btn btn-primary w-25">Log in</button>
-                        <button type="button" class="btn btn-danger w-25" data-dismiss="modal">Close</button>
-                    </div>
-                </form>
-            </div>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Input.Email"></label>
+        <input asp-for="Input.Email" class="form-control" />
+        <span asp-validation-for="Input.Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Input.Password"></label>
+        <input asp-for="Input.Password" class="form-control" />
+        <span asp-validation-for="Input.Password" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <div class="checkbox">
+            <label asp-for="Input.RememberMe">
+                <input asp-for="Input.RememberMe" />
+                @Html.DisplayNameFor(m => m.Input.RememberMe)
+            </label>
         </div>
     </div>
 
+    <div class="form-group">
+        <p>
+            <a id="forgot-password" asp-page="./ForgotPassword">Zapomenuté heslo ?</a>
+        </p>
+        <p>
+            <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Vytvořit nový účetr</a>
+        </p>
+    </div>
 
-    <script type="text/javascript" src="~/lib/jquery/jquery.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("#modalLogin").modal("toggle");
-        });
+    <button type="submit" class="btn btn-primary w-25">Přihlásit se</button>
 
-    </script>
+</form>
+
+
+
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
