@@ -1,0 +1,16 @@
+﻿.hiddenDiv {
+    z-index: 3;
+}
+
+@media (max-width: 768px) {
+    .btn, .btn-group {
+        width: 100%;
+    }
+}
+
+.same-width {
+    width: 80px;
+
+}
+
+

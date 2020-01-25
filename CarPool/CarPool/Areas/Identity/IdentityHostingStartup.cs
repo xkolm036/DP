@@ -17,7 +17,7 @@ namespace CarPool.Areas.Identity
             builder.ConfigureServices((context, services) => {
                 services.AddDbContext<CarPoolContext>(options =>
                     options.UseSqlServer(
-                        context.Configuration.GetConnectionString("CarPoolContextConnection")));
+                        context.Configuration.GetConnectionString("CarPoolUsers")));
 
              /*   services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                     .AddEntityFrameworkStores<CarPoolContext>();*/
