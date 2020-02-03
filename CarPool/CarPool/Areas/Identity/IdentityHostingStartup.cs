@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Npgsql;
 
 [assembly: HostingStartup(typeof(CarPool.Areas.Identity.IdentityHostingStartup))]
 namespace CarPool.Areas.Identity
@@ -15,12 +16,13 @@ namespace CarPool.Areas.Identity
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
-                services.AddDbContext<CarPoolContext>(options =>
-                    options.UseSqlServer(
-                        context.Configuration.GetConnectionString("CarPoolUsers")));
+                var connBuilder = new NpgsqlConnectionStringBuilder(
+                    context.Configuration.GetConnectionString("CarPoolUsers"));
+       
 
-             /*   services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                    .AddEntityFrameworkStores<CarPoolContext>();*/
+                services.AddDbContext<CarPoolContext>(options =>
+                    options.UseNpgsql(connBuilder.ConnectionString));
+
             });
         }
     }

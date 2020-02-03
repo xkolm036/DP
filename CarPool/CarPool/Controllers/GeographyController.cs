@@ -16,7 +16,7 @@ namespace CarPool.Controllers
             List<School> school = new List<School>();
 
 
-            SQLControll DB = new SQLControll();
+            PSSQLControll DB = new PSSQLControll();
 
             ViewData["City"] = DB.FindCity(geo);
             ViewData["Street"] = DB.FindStreet(geo);

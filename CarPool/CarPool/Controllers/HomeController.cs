@@ -37,7 +37,7 @@ namespace CarPool.Controllers
             if (!ModelState.IsValid)
                 return View("Find");
 
-            SQLControll DB = new SQLControll();
+            PSSQLControll DB = new PSSQLControll();
 
             ViewData["Routes"] = DB.FindRoutes(r);
 
@@ -72,7 +72,7 @@ namespace CarPool.Controllers
 
         public IActionResult CreateRoute(Route route)
         {
-            SQLControll DB = new SQLControll();
+            PSSQLControll DB = new PSSQLControll();
             DB.CreateRoute(route);
             DB.CloseConnection();
 

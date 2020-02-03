@@ -1,32 +1,46 @@
 ﻿//new geo
 $(document).ready(function () {
+    let input = document.getElementsByClassName('adress_inp');
 
-    $('.adress_inp').on('input', function () {
-        if ($(this).val().length > 2) {
-            var input = $(this);
-            var hiddenDivId = "#";
-            hiddenDivId += $(this).attr("data-target");
+    // Init a timeout variable to be used below
+    let timeout = null;
+
+    // Listen for keystroke events
+    input.addEventListener('keyup', function (e) {
+        clearTimeout(timeout);
+        timeout = setTimeout(function () {
+            $('.adress_inp').on('input', function () {
+                if ($(this).val().length > 2) {
+                    var input = $(this);
+                    var hiddenDivId = "#";
+                    hiddenDivId += $(this).attr("data-target");
 
 
-            $.ajax({ //send request to find city/street
-                url: "/Geography/dropDownItems",
-                type: "GET",
-                data: { geo: $(this).val() },  //data send to controller
-                success: function (response) {
-                    $(hiddenDivId).removeClass("d-none");
-                    $(hiddenDivId).html(response); //fill dropdownItems view
+                    $.ajax({ //send request to find city/street
+                        url: "/Geography/dropDownItems",
+                        type: "GET",
+                        data: { geo: $(this).val() },  //data send to controller
+                        success: function (response) {
+                            $(hiddenDivId).removeClass("d-none");
+                            $(hiddenDivId).html(response); //fill dropdownItems view
 
-                    $(".hiddenDiv a").click(function () {
-                        $(input).val(this.innerText); //Fill city into input
-                        $(hiddenDivId).addClass("d-none"); //Hide dropdown on click on city
+                            $(".hiddenDiv a").click(function () {
+                                $(input).val(this.innerText); //Fill city into input
+                                $(hiddenDivId).addClass("d-none"); //Hide dropdown on click on city
+                            });
+
+                        }
                     });
 
                 }
             });
-
-        }
+        }, 1000);
     });
+
 });
+
+
+
 
 
 

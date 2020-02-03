@@ -13,7 +13,8 @@ namespace CarPool.Data
         public CarPoolContext(DbContextOptions<CarPoolContext> options)
             : base(options)
         {
-        }
+
+    }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
