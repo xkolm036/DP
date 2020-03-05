@@ -1,24 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 
 namespace Data.Models
 {
-   public class Route
+    [Table("route")]
+    public class Route
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int id { get; set; }
+
+        [Column("startdestination")]
         [Required(ErrorMessage ="Zadej misto odkud chces jet")]
         public string startDest { get; set; }
+
+        [Column("finaldestination")]
         [Required(ErrorMessage = "Zadej misto kam chces jet")]
         public string finalDestination { get; set; }
+
+        [Column("date")]
         [Required(ErrorMessage = "Zadej datum")]
-        public string date { get; set; }
+        public DateTime date { get; set; }
+
+        [NotMapped]
         [Required(ErrorMessage = "Zadej cas")]
-        public string time { get; set; }
+        public virtual DateTime time { get; set; }
+
+        [Column("seats")]
         [Required(ErrorMessage = "Zadej pocet osob")]
-        public int Seats { get; set; }
-     
+        public int seats { get; set; }
+
+        [Column("price")]
         public double price { get; set; }
     }
 }

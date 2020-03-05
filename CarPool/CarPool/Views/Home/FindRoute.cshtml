@@ -21,11 +21,11 @@
             @foreach (Route RouteFromDb in (List<Route>)ViewData["Routes"])
             {
             <tr>
-                <td>@RouteFromDb.date</td>
-                <td>@RouteFromDb.time</td>
+                <td>@RouteFromDb.date.ToString("dd.MM")</td>
+                <td>@RouteFromDb.date.ToString("HH:mm")</td>
                 <td>@RouteFromDb.startDest</td>
                 <td>@RouteFromDb.finalDestination</td>
-                <td>@RouteFromDb.Seats</td>
+                <td>@RouteFromDb.seats</td>
                 <td>@RouteFromDb.price</td>
                 <td>Pripojit se</td>
             </tr>

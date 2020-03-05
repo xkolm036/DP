@@ -5,6 +5,7 @@ using Npgsql;
 using System.Collections.Generic;
 
 
+
 namespace Data
 
 {
@@ -14,9 +15,10 @@ namespace Data
 
         public PSSQLControll()
         {
-            string connetctionString = "Host=localhost;Username=postgres;Password=polav1994;Database=Geography";
+            string connetctionString = "Host=localhost;Username=postgres;Password=polav1994;Database=geography";
             conn  = new NpgsqlConnection(connetctionString);
             conn.Open();
+
         }
 
         public List<City> FindCity(string city)
@@ -116,7 +118,7 @@ namespace Data
         {
             conn.Close();
         }
-
+        /*
         public void CreateRoute(Route r)
         {
             NpgsqlCommand cmd;
@@ -131,7 +133,7 @@ namespace Data
             cmd.Parameters.AddWithValue("StartDestination", r.startDest);
             cmd.Parameters.AddWithValue("FinalDestination", r.finalDestination);
             cmd.Parameters.AddWithValue("Date", dateTime);
-            cmd.Parameters.AddWithValue("Seats", r.Seats);
+            cmd.Parameters.AddWithValue("Seats", r.seats);
 
             cmd.ExecuteNonQuery();
         }
@@ -147,8 +149,8 @@ namespace Data
             DateTime dateTime = Convert.ToDateTime(tempDate);
             string sqlFormattedDate = dateTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
 
-            cmd = new NpgsqlCommand("SELECT * FROM dbo.Route WHERE StartDestination=@StartDestination AND FinalDestination=@FinalDestination " +
-                       " AND Seats>0 AND (Date between INTERVAL '-30 MI' +@Dates AND INTERVAL '30 MI' +@Dates)", conn);
+            cmd = new NpgsqlCommand("SELECT * FROM Route WHERE StartDestination = 'Kladno' AND FinalDestination = 'Hřebeč' "+
+                                    "AND Seats > 0 AND(date between timestamp '2020-03-03 21:06:00' - interval '30 minutes' AND timestamp '2020-03-03 21:06:00.000' + interval '30 minutes' ", conn);
 
             cmd.Parameters.AddWithValue("StartDestination", r.startDest);
             cmd.Parameters.AddWithValue("FinalDestination", r.finalDestination);
@@ -158,15 +160,15 @@ namespace Data
             while (reader.Read())
             {
 
-                dateTime = (DateTime)reader.GetValue(reader.GetOrdinal("Date"));
+                dateTime = (DateTime)reader.GetValue(reader.GetOrdinal("date"));
                 routesFromDb.Add(new Route
                 {
 
                     startDest = reader.GetValue(reader.GetOrdinal("StartDestination")).ToString(),
-                    finalDestination = reader.GetValue(reader.GetOrdinal("StartDestination")).ToString(),
-                    Seats = int.Parse(reader.GetValue(reader.GetOrdinal("Seats")).ToString()),
+                    finalDestination = reader.GetValue(reader.GetOrdinal("FinalDestination")).ToString(),
+                    seats = int.Parse(reader.GetValue(reader.GetOrdinal("Seats")).ToString()),
                     date = dateTime.ToString("dd.MM.yyyy"),
-                    time = dateTime.ToString("HH:mm")
+                    //time = dateTime.ToString("HH:mm")
                 });
             }
             reader.Close();
@@ -175,6 +177,6 @@ namespace Data
 
 
 
-        }
+        }*/
     }
 }

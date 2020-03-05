@@ -10,9 +10,13 @@ using Data.Models;
 using Data;
 using Microsoft.AspNetCore.Authorization;
 using CarPool.Areas.Identity.Pages.Account;
+using CarPool.Data;
+using System.ComponentModel.DataAnnotations;
+using ExternalData.Models;
 
 namespace CarPool.Controllers
 {
+   
     public class HomeController : Controller
     {
 
@@ -23,23 +27,43 @@ namespace CarPool.Controllers
 
             ModelState.Clear(); // zamezi zobrazeni validačni hlašky po prvním spuštení
 
-            if (ReturnUrl != null)
-            {
-                ViewData["Login"] = true;
-            }
 
 
             return View();
         }
 
-        public IActionResult FindRoute(Route r)
+        public IActionResult FindRoute(Route route)
         {
+
             if (!ModelState.IsValid)
                 return View("Find");
 
-            PSSQLControll DB = new PSSQLControll();
+            List < Route >routes= new List<Route>();
+            route.date = route.date.Add(route.time.TimeOfDay);
 
-            ViewData["Routes"] = DB.FindRoutes(r);
+
+
+            using (var db = new RoutesContext())
+            {
+                var query = from ro in db.Routes
+                            where route.date.AddMinutes(-30) <= ro.date && ro.date<= route.date.AddMinutes(30)
+                            && route.startDest==ro.startDest && route.finalDestination==ro.finalDestination
+                            select ro;
+
+                foreach (Route r in query)
+                {
+                    routes.Add(r);
+                }
+
+
+            }
+
+
+
+
+            //  PSSQLControll DB = new PSSQLControll();
+
+            ViewData["Routes"] = routes;
 
 
             return View();
@@ -72,11 +96,20 @@ namespace CarPool.Controllers
 
         public IActionResult CreateRoute(Route route)
         {
-            PSSQLControll DB = new PSSQLControll();
-            DB.CreateRoute(route);
-            DB.CloseConnection();
+            using (var cpx=new RoutesContext())
+            {
+               route.date= route.date.Add(route.time.TimeOfDay);
+                cpx.Routes.Add(route);
+                cpx.SaveChanges();
+            }
+
+
 
             return View("Create");
+
+
+
+
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

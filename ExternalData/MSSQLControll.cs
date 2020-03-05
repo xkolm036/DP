@@ -124,71 +124,71 @@ namespace Data
             cnn.Close();
         }
 
-        public void CreateRoute(Route r)
-        {
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            string commandText = (@"INSERT INTO DP.dbo.Route (StartDestination,FinalDestination,Date,Seats)
-                                  VALUES (@StartDestination,@FinalDestination,@Date,@Seats)");
-
-            string tempDate = r.date + " " + r.time;
-            DateTime dateTime = Convert.ToDateTime(tempDate);
-
-            SqlCommand command = new SqlCommand(commandText, cnn);
-            command.Parameters.AddWithValue("@StartDestination", r.startDest);
-            command.Parameters.AddWithValue("@FinalDestination", r.finalDestination);
-            command.Parameters.AddWithValue("@Date", dateTime);
-            command.Parameters.AddWithValue("@Seats", r.Seats);
-            //command.Parameters.AddWithValue("@Time", r.time);
-            command.ExecuteNonQuery();
-
-            command.Dispose();
-
-        }
-
-
-        public List<Route> FindRoutes(Route r)
-        {
-            List<Route> routesFromDb = new List<Route>();
-
-
-            string tempDate = r.date + " " + r.time;
-            DateTime dateTime = Convert.ToDateTime(tempDate);
-            string sqlFormattedDate = dateTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
-
-            string commandText = (@"SELECT * FROM dbo.Route WHERE StartDestination=@StartDestination AND FinalDestination=@FinalDestination 
-                                  AND Seats>0 AND (Date between DATEADD(MI,-30,@Dates) AND DATEADD(MI,30,@Dates))");
-
-
-            SqlCommand command = new SqlCommand(commandText, cnn);
-            command.Parameters.AddWithValue("@StartDestination", r.startDest);
-            command.Parameters.AddWithValue("@FinalDestination", r.finalDestination);
-            command.Parameters.AddWithValue("@Dates", sqlFormattedDate);
-
-
-
-
-
-            SqlDataReader dataReader;
-            //  string output="";
-            dataReader = command.ExecuteReader();
-
-
-            while (dataReader.Read())
+        /*    public void CreateRoute(Route r)
             {
-                dateTime = (DateTime)dataReader["Date"];
-                routesFromDb.Add(new Route
-                {
-                    startDest = dataReader["StartDestination"].ToString(),
-                    finalDestination = dataReader["FinalDestination"].ToString(),
-                    Seats = int.Parse(dataReader["Seats"].ToString()),
-                    date = dateTime.ToString("dd.MM.yyyy"),
-                    time = dateTime.ToString("HH:mm")
-                });
-            }
-            dataReader.Close();
-            return routesFromDb;
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                string commandText = (@"INSERT INTO DP.dbo.Route (StartDestination,FinalDestination,Date,Seats)
+                                      VALUES (@StartDestination,@FinalDestination,@Date,@Seats)");
 
-        }
+                string tempDate = r.date + " " + r.time;
+                DateTime dateTime = Convert.ToDateTime(tempDate);
+
+                SqlCommand command = new SqlCommand(commandText, cnn);
+                command.Parameters.AddWithValue("@StartDestination", r.startDest);
+                command.Parameters.AddWithValue("@FinalDestination", r.finalDestination);
+                command.Parameters.AddWithValue("@Date", dateTime);
+                command.Parameters.AddWithValue("@Seats", r.seats);
+                //command.Parameters.AddWithValue("@Time", r.time);
+                command.ExecuteNonQuery();
+
+                command.Dispose();
+
+            }
+
+
+            public List<Route> FindRoutes(Route r)
+            {
+                List<Route> routesFromDb = new List<Route>();
+
+
+                string tempDate = r.date + " " + r.time;
+                DateTime dateTime = Convert.ToDateTime(tempDate);
+                string sqlFormattedDate = dateTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
+
+                string commandText = (@"SELECT * FROM dbo.Route WHERE StartDestination=@StartDestination AND FinalDestination=@FinalDestination 
+                                      AND Seats>0 AND (Date between DATEADD(MI,-30,@Dates) AND DATEADD(MI,30,@Dates))");
+
+
+                SqlCommand command = new SqlCommand(commandText, cnn);
+                command.Parameters.AddWithValue("@StartDestination", r.startDest);
+                command.Parameters.AddWithValue("@FinalDestination", r.finalDestination);
+                command.Parameters.AddWithValue("@Dates", sqlFormattedDate);
+
+
+
+
+
+                SqlDataReader dataReader;
+                //  string output="";
+                dataReader = command.ExecuteReader();
+
+
+                while (dataReader.Read())
+                {
+                    dateTime = (DateTime)dataReader["Date"];
+                    routesFromDb.Add(new Route
+                    {
+                        startDest = dataReader["StartDestination"].ToString(),
+                        finalDestination = dataReader["FinalDestination"].ToString(),
+                        seats = int.Parse(dataReader["Seats"].ToString()),
+                        date = dateTime.ToString("dd.MM.yyyy"),
+                        //time = dateTime.ToString("HH:mm")
+                    });
+                }
+                dataReader.Close();
+                return routesFromDb;
+
+            }  */
 
     }
 }

@@ -6,3 +6,11 @@ C:\Users\marty\source\repos\CarPool\ExternalData\obj\Release\netstandard2.0\Exte
 C:\Users\marty\source\repos\CarPool\ExternalData\obj\Release\netstandard2.0\ExternalData.AssemblyInfo.cs
 C:\Users\marty\source\repos\CarPool\ExternalData\obj\Release\netstandard2.0\ExternalData.dll
 C:\Users\marty\source\repos\CarPool\ExternalData\obj\Release\netstandard2.0\ExternalData.pdb
+D:\OneDrive\Desktop\CarPoll\ExternalData\bin\Release\netstandard2.0\ExternalData.deps.json
+D:\OneDrive\Desktop\CarPoll\ExternalData\bin\Release\netstandard2.0\ExternalData.dll
+D:\OneDrive\Desktop\CarPoll\ExternalData\bin\Release\netstandard2.0\ExternalData.pdb
+D:\OneDrive\Desktop\CarPoll\ExternalData\obj\Release\netstandard2.0\ExternalData.csprojAssemblyReference.cache
+D:\OneDrive\Desktop\CarPoll\ExternalData\obj\Release\netstandard2.0\ExternalData.AssemblyInfoInputs.cache
+D:\OneDrive\Desktop\CarPoll\ExternalData\obj\Release\netstandard2.0\ExternalData.AssemblyInfo.cs
+D:\OneDrive\Desktop\CarPoll\ExternalData\obj\Release\netstandard2.0\ExternalData.dll
+D:\OneDrive\Desktop\CarPoll\ExternalData\obj\Release\netstandard2.0\ExternalData.pdb
