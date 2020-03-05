@@ -74,7 +74,7 @@ namespace CarPool
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Find}/{id?}");
+                    pattern: "{controller=Route}/{action=FindRouteForm}/{id?}");
                 endpoints.MapRazorPages();
             });
         }

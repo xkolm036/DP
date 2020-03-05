@@ -12,7 +12,7 @@
                 <th>Kam</th>
                 <th>Volná Místa</th>
                 <th>Cena</th>
-                <th> </th>
+                <th>Detail</th>
              
             </tr>
         </thead>
@@ -27,7 +27,7 @@
                 <td>@RouteFromDb.finalDestination</td>
                 <td>@RouteFromDb.seats</td>
                 <td>@RouteFromDb.price</td>
-                <td>Pripojit se</td>
+                <td><a href="/Route/ShowDetail?id=@RouteFromDb.id">Detail</a></td>
             </tr>
 
             }

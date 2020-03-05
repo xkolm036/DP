@@ -17,7 +17,7 @@
 
 <h1 class="mt-3 mb-3">Najít jízdu</h1>
 
-<form asp-controller="Home" asp-action="FindRoute" method="post">
+<form asp-controller="Route" asp-action="FindRoute" method="post">
     <div>
     
         <div class="row">
@@ -89,18 +89,5 @@
     </div>
 
 </form>
-
-
-<script type="text/javascript" src="~/lib/jquery/jquery.js"></script>
-<script>
-    $(document).ready(function () {
-        if (@ViewData["Login"] = true) {
-             $('#modalLogin').modal('toggle')
-        }
-     
-    });
-
-
-</script>
 
 

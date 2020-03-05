@@ -139,9 +139,6 @@ D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\bin\Debug\netcoreapp3.1\ExternalData
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\bin\Debug\netcoreapp3.1\ExternalData.pdb
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\Razor\Views\Geography\dropDownItems.cshtml.g.cs
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\Razor\Views\Home\Contact.cshtml.g.cs
-D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\Razor\Views\Home\Create.cshtml.g.cs
-D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\Razor\Views\Home\Find.cshtml.g.cs
-D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\Razor\Views\Home\FindRoute.cshtml.g.cs
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\bin\Debug\netcoreapp3.1\libman.json
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Login.cshtml.g.cs
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Logout.cshtml.g.cs
@@ -174,3 +171,6 @@ D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\bin\Debug\netcoreapp3.1\Microsoft.Ex
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Debug.dll
+D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\Razor\Views\Route\CreateRouteForm.cshtml.g.cs
+D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\Razor\Views\Route\FindRouteForm.cshtml.g.cs
+D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\Razor\Views\Route\FindRouteResolutTable.cshtml.g.cs
