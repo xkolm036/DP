@@ -20,22 +20,29 @@ namespace CarPool.Controllers
             return View("FindRouteForm");
         }
 
-        public IActionResult FindRoute(Route route)
+        public IActionResult FindRoute(string startDestination, string finalDestination, string date, string time)
         {
+            //Convert string to datetime
+            DateTime dateTime = DateTime.Parse(date);
+            DateTime times = DateTime.Parse(time);
+            dateTime= dateTime.Add(times.TimeOfDay);
+
 
             if (!ModelState.IsValid)
                 return View("FindRouteForm");
-          
 
+
+
+          
             List<Route> routes = new List<Route>();
-            route.date = route.date.Add(route.time.TimeOfDay);
+          //  route.date = route.date.Add(route.time.TimeOfDay);
 
 
             using (var db = new RoutesContext())
             {
                 var query = from ro in db.Routes
-                            where route.date.AddMinutes(-30) <= ro.date && ro.date <= route.date.AddMinutes(30)
-                            && route.startDest == ro.startDest && route.finalDestination == ro.finalDestination
+                            where dateTime.AddMinutes(-30) <= ro.date && ro.date <= dateTime.AddMinutes(30)
+                            && startDestination == ro.startDestination && finalDestination == ro.finalDestination
                             select ro;
 
                 foreach (Route r in query)
@@ -82,8 +89,18 @@ namespace CarPool.Controllers
         public IActionResult ShowDetail(int id)
         {
             ViewData["Message"] = "Your application description page.";
+            Route routeFromDb=new Route();
 
-            return View();
+            using (var db = new RoutesContext())
+            {
+               routeFromDb= db.Routes.Where(r => r.id == id).FirstOrDefault();
+
+            }
+
+
+
+
+            return View(routeFromDb);
         }
     
 

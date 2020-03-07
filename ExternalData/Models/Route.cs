@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 
+
 namespace Data.Models
 {
     [Table("route")]
@@ -16,7 +17,7 @@ namespace Data.Models
 
         [Column("startdestination")]
         [Required(ErrorMessage ="Zadej misto odkud chces jet")]
-        public string startDest { get; set; }
+        public string startDestination { get; set; }
 
         [Column("finaldestination")]
         [Required(ErrorMessage = "Zadej misto kam chces jet")]
@@ -36,5 +37,8 @@ namespace Data.Models
 
         [Column("price")]
         public double price { get; set; }
+
+
+ 
     }
 }

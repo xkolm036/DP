@@ -174,3 +174,4 @@ D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\bin\Debug\netcoreapp3.1\Microsoft.Ex
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\Razor\Views\Route\CreateRouteForm.cshtml.g.cs
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\Razor\Views\Route\FindRouteForm.cshtml.g.cs
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\Razor\Views\Route\FindRouteResolutTable.cshtml.g.cs
+D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\Razor\Views\Route\ShowDetail.cshtml.g.cs

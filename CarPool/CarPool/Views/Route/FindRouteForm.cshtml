@@ -17,7 +17,7 @@
 
 <h1 class="mt-3 mb-3">Najít jízdu</h1>
 
-<form asp-controller="Route" asp-action="FindRoute" method="post">
+<form asp-controller="Route" asp-action="FindRoute" method="get">
     <div>
     
         <div class="row">
@@ -27,9 +27,9 @@
                     <div class="input-group-prepend ">
                         <span class="input-group-text">Odkud</span>
                     </div>
-                    <input asp-for="@Model.startDest" class="form-control focusSelect adress_inp" placeholder="zadejte alepon tři znaky" autocomplete="off" data-target="input-Sorce-Content">
+                    <input asp-for="@Model.startDestination" class="form-control focusSelect adress_inp" placeholder="zadejte alepon tři znaky" autocomplete="off" data-target="input-Sorce-Content">
                 </div>
-                <span class="text-danger"  asp-validation-for="@Model.startDest"> </span>
+                <span class="text-danger"  asp-validation-for="@Model.startDestination"> </span>
                 <div id="input-Sorce-Content" class="list-group d-none position-absolute ml-md-5 hiddenDiv">
                     <span class="sr-only">Loading...</span>
                 </div>
