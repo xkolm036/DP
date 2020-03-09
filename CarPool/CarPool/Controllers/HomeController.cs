@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using CarPool.Models;
-using Data.Models;
 using Data;
 using Microsoft.AspNetCore.Authorization;
 using CarPool.Areas.Identity.Pages.Account;

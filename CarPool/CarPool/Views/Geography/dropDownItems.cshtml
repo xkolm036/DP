@@ -1,8 +1,8 @@
-﻿
+﻿@using CarPool.Models;
 
 
 
-@foreach (Data.Models.City city in (List<Data.Models.City>)ViewData["City"])
+@foreach (City city in (List<City>)ViewData["City"])
 {
     <div class="list-group-item">
         <i class="fa fa-city text-primary "></i>
@@ -15,7 +15,7 @@
 
 
 
-@foreach (Data.Models.City city in (List<Data.Models.City>)ViewData["Street"])
+@foreach (City city in (List<City>)ViewData["Street"])
 {
     <div class="list-group-item">
         <i class="fas fa-map-marker-alt "></i>
@@ -25,7 +25,7 @@
 }
 
 
-@foreach (Data.Models.School sc in (List<Data.Models.School>)ViewData["School"])
+@foreach (School sc in (List<School>)ViewData["School"])
 {
     <div class="list-group-item">
         <i class="fas fa-user-graduate"></i>
