@@ -1,4 +1,4 @@
-﻿using Data.Models;
+﻿using CarPool.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

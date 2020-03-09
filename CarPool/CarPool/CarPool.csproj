@@ -26,11 +26,6 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\..\ExternalData\ExternalData.csproj" />
-  </ItemGroup>
-
-
-  <ItemGroup>
     <Folder Include="Data\Migrations\" />
     <Folder Include="Views\Geography\" />
   </ItemGroup>
