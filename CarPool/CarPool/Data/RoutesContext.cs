@@ -13,7 +13,7 @@ namespace CarPool.Data
     {
    
         public DbSet<Route> Routes { get; set; }
-        public DbSet<IdentityUser> Users { get; set; }
+    //    public DbSet<IdentityUser> Users { get; set; }
 
         public DbSet<RouteUser> RouteUser { get; set; }
 
@@ -24,7 +24,7 @@ namespace CarPool.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<RouteUser>().HasKey(sc => new { sc.RoutId, sc.UserId });
+            modelBuilder.Entity<RouteUser>().HasKey(sc => new { sc.RoutId ,sc.UserId });
 
             modelBuilder.Entity<RouteUser>()
                 .HasOne<Route>(sc => sc.Route)
