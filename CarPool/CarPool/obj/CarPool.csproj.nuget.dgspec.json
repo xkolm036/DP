@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\OneDrive\\Desktop\\CarPoll\\CarPool\\CarPool\\CarPool.csproj": {}
+    "C:\\DP\\CarPool\\CarPool\\CarPool.csproj": {}
   },
   "projects": {
-    "D:\\OneDrive\\Desktop\\CarPoll\\CarPool\\CarPool\\CarPool.csproj": {
+    "C:\\DP\\CarPool\\CarPool\\CarPool.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\OneDrive\\Desktop\\CarPoll\\CarPool\\CarPool\\CarPool.csproj",
+        "projectUniqueName": "C:\\DP\\CarPool\\CarPool\\CarPool.csproj",
         "projectName": "CarPool",
-        "projectPath": "D:\\OneDrive\\Desktop\\CarPoll\\CarPool\\CarPool\\CarPool.csproj",
+        "projectPath": "C:\\DP\\CarPool\\CarPool\\CarPool.csproj",
         "packagesPath": "C:\\Users\\marty\\.nuget\\packages\\",
-        "outputPath": "D:\\OneDrive\\Desktop\\CarPoll\\CarPool\\CarPool\\obj\\",
+        "outputPath": "C:\\DP\\CarPool\\CarPool\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -32,8 +32,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "D:\\OneDrive\\Desktop\\CarPoll\\ExternalData\\ExternalData.csproj": {
-                "projectPath": "D:\\OneDrive\\Desktop\\CarPoll\\ExternalData\\ExternalData.csproj"
+              "C:\\DP\\ExternalData\\ExternalData.csproj": {
+                "projectPath": "C:\\DP\\ExternalData\\ExternalData.csproj"
               }
             }
           }
@@ -110,14 +110,14 @@
         }
       }
     },
-    "D:\\OneDrive\\Desktop\\CarPoll\\ExternalData\\ExternalData.csproj": {
+    "C:\\DP\\ExternalData\\ExternalData.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\OneDrive\\Desktop\\CarPoll\\ExternalData\\ExternalData.csproj",
+        "projectUniqueName": "C:\\DP\\ExternalData\\ExternalData.csproj",
         "projectName": "ExternalData",
-        "projectPath": "D:\\OneDrive\\Desktop\\CarPoll\\ExternalData\\ExternalData.csproj",
+        "projectPath": "C:\\DP\\ExternalData\\ExternalData.csproj",
         "packagesPath": "C:\\Users\\marty\\.nuget\\packages\\",
-        "outputPath": "D:\\OneDrive\\Desktop\\CarPoll\\ExternalData\\obj\\",
+        "outputPath": "C:\\DP\\ExternalData\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
