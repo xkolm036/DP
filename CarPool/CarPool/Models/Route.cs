@@ -38,7 +38,7 @@ namespace CarPool.Models
         [Column("price")]
         public double price { get; set; }
 
+        public IList<RouteUser> RouteUser { get; set; }
 
- 
     }
 }

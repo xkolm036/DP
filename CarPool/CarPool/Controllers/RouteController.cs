@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using CarPool.Data;
 using CarPool.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarPool.Controllers
@@ -93,13 +95,25 @@ namespace CarPool.Controllers
 
             }
 
+            return View(routeFromDb);
+        }
+
+        [Route("/Route/tst")]
+        public IActionResult tst(int id)
+        {
+            ViewData["Message"] = "Your application description page.";
+            Route routeFromDb = new Route();
+
+            var claimsIdentity = (ClaimsIdentity)this.User.Identity;
+            var claim = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+            var userId = claim.Value;
+
+
 
 
 
             return View(routeFromDb);
         }
-    
-
 
     }
 }
