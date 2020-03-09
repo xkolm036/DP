@@ -19,19 +19,14 @@ namespace CarPool.Controllers
            ModelState.Clear(); // zamezi zobrazeni validačni hlašky po prvním spuštení
             return View("FindRouteForm");
         }
-
-        public IActionResult FindRoute(string startDestination, string finalDestination, string date, string time)
+        [HttpGet]
+        public IActionResult FindRoute(Route r)
         {
-            //Convert string to datetime
-            DateTime dateTime = DateTime.Parse(date);
-            DateTime times = DateTime.Parse(time);
-            dateTime= dateTime.Add(times.TimeOfDay);
-
 
             if (!ModelState.IsValid)
                 return View("FindRouteForm");
 
-
+            r.date = r.date.Add(r.time.TimeOfDay);
 
           
             List<Route> routes = new List<Route>();
@@ -41,13 +36,14 @@ namespace CarPool.Controllers
             using (var db = new RoutesContext())
             {
                 var query = from ro in db.Routes
-                            where dateTime.AddMinutes(-30) <= ro.date && ro.date <= dateTime.AddMinutes(30)
-                            && startDestination == ro.startDestination && finalDestination == ro.finalDestination
+                            where r.startDestination == ro.startDestination && r.finalDestination == ro.finalDestination
+                       
                             select ro;
 
-                foreach (Route r in query)
+                foreach (Route routeFromQuery in query)
                 {
-                    routes.Add(r);
+                    if (r.date.AddMinutes(-30).Ticks <= routeFromQuery.date.Ticks && routeFromQuery.date.Ticks <= r.date.AddMinutes(30).Ticks)
+                    routes.Add(routeFromQuery);
                 }
 
             }
