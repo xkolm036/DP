@@ -30,7 +30,8 @@ namespace CarPool.Controllers
         public IActionResult FindRouteForm(Route r, string ReturnUrl)
         {
            ModelState.Clear(); // zamezi zobrazeni validačni hlašky po prvním spuštení
-            return View("FindRouteForm");
+          //  return View("Clear");
+          return View("FindRouteForm");
         }
         [HttpGet]
         public IActionResult FindRoute(Route route)

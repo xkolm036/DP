@@ -9,51 +9,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - DiplomovaPrace</title>
 
-    <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap4/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker-standalone.min.css" />
-        <link rel="stylesheet" href="~/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" />
-        <link rel="stylesheet" href="~/lib/font-awesome/css/fontawesome.min.css" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-        @RenderSection("CSS", required: false)
-    </environment>
-    <environment exclude="Development">
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/bootstrap4/dist/js/bootstrap.min.js"></script>
+    <script src="~/lib/popper.js/dist/popper.min.js"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap4/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+    <script src="~/lib/font-awesome/js/all.min.js"></script>
+    @RenderSection("Scripts", required: false)
+    @RenderSection("CSS", required: false)
 
-    </environment>
+
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-action="Route" asp-controller="FindRouteForm">CarPool</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Route" asp-action="FindRouteForm" title="Najít jízdu">Najít jízdu</a>
+        <div class="container">
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="container">
+                    <a class="navbar-brand" asp-action="Route" asp-controller="FindRouteForm">CarPool</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                        <partial name="_LoginPartial" />
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Route" asp-action="FindRouteForm" title="Najít jízdu">Najít jízdu</a>
 
 
-                        </li>
-                        @if (SignInManager.IsSignedIn(User))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Route" asp-action="CreateRouteForm">Vytvořit jízdu</a>
                             </li>
-                            <li class="nav-item ">
-                                <a class="nav-link text-dark " asp-controller="Route" asp-action="CreateRouteForm">Přihlášené jízdy</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Route" asp-action="CreateRouteForm">Vytvořit jízdu</a>
-                            </li>
-                        }
-                    </ul>
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Route" asp-action="CreateRouteForm">Vytvořit jízdu</a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link text-dark " asp-controller="Route" asp-action="CreateRouteForm">Přihlášené jízdy</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Route" asp-action="CreateRouteForm">Vytvořit jízdu</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </div>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -67,28 +68,12 @@
             &copy; 2020 - CarPool - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    <!--Zde-->
+   
 
 
 
 
 
 
-
-
-
-
-
-
-
-    <environment include="Development">
-        <script src="~/lib/jquery/jquery.js"></script>
-        <script src="~/lib/moment.js/moment.min.js"></script>
-        <script src="~/lib/bootstrap4/dist/js/bootstrap.js"></script>
-        <script src="~/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
-        <script src="~/lib/popper.js/dist/umd/popper.js"></script>
-        <script src="~/lib/font-awesome/js/all.js"></script>
-    </environment>
-    @RenderSection("Scripts", required: false)
 </body>
 </html>
