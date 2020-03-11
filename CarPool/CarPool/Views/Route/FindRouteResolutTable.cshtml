@@ -1,8 +1,8 @@
 ﻿@using CarPool.Models;
 
 
-    <h2>Nalezené jízdy</h2>
-    
+<h2>Nalezené jízdy</h2>
+<div id="Resolut">
     <table class="table table-hover">
         <thead>
             <tr>
@@ -13,23 +13,71 @@
                 <th>Volná Místa</th>
                 <th>Cena</th>
                 <th>Detail</th>
-             
+                <th>Připojit se</th>
+
+
             </tr>
         </thead>
         <tbody>
 
-            @foreach (Route RouteFromDb in (List<Route>)ViewData["Routes"])
+            @foreach (Route routeFromDb in (List<Route>)ViewData["Routes"])
             {
-            <tr>
-                <td>@RouteFromDb.date.ToString("dd.MM")</td>
-                <td>@RouteFromDb.date.ToString("HH:mm")</td>
-                <td>@RouteFromDb.startDestination</td>
-                <td>@RouteFromDb.finalDestination</td>
-                <td>@RouteFromDb.seats</td>
-                <td>@RouteFromDb.price</td>
-                <td><a href="/Route/ShowDetail?id=@RouteFromDb.id">Detail</a></td>
-            </tr>
+                <tr>
+                    <td>@routeFromDb.date.ToString("dd.MM")</td>
+                    <td>@routeFromDb.date.ToString("HH:mm")</td>
+                    <td>@routeFromDb.startDestination</td>
+                    <td>@routeFromDb.finalDestination</td>
+                    <td>@routeFromDb.seats</td>
+                    <td>@routeFromDb.price</td>
+                    <td><a href="/Route/ShowDetail?id=@routeFromDb.id">Detail</a></td>
+
+                    @if (routeFromDb.connected == false)
+                    {
+                        <td><a href="#" id="@routeFromDb.id" title="join">Připojit se</a></td>
+                    }
+                    else
+                    {
+                        <td><a href="#" @routeFromDb.id title="delete">Odhlásit se</a></td>
+                    }
+                </tr>
 
             }
         </tbody>
     </table>
+
+</div>
+
+<script src="~/lib/jquery/jquery.js"></script>
+<script>
+
+
+    $('a[title="join"]').click(function () {
+        var link = $(this);
+
+        $.ajax({ //send request to find city/street
+           
+            url: "/Route/JoinRoute",
+            type: "POST",
+            data: { id: link.attr("id") },  //data send to controller
+            success: function () {
+                link.attr("title", "delete");
+                link.text("Odhlásit se");
+            }
+        });
+
+
+
+
+    });
+
+
+
+
+
+
+
+
+
+
+
+</script>

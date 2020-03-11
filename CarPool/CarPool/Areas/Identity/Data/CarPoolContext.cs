@@ -10,8 +10,11 @@ namespace CarPool.Data
 {
     public class CarPoolContext : IdentityDbContext<IdentityUser>
     {
+
+
         public CarPoolContext(DbContextOptions<CarPoolContext> options)
             : base(options)
+         
         {
 
     }

@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace CarPool.Migrations
 {
-    public partial class newInit : Migration
+    public partial class Fuit : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -51,39 +51,47 @@ namespace CarPool.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "RouteUser",
+                name: "routeUsers",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(nullable: false),
-                    RoutId = table.Column<int>(nullable: false)
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UserId = table.Column<string>(nullable: true),
+                    RoutId = table.Column<int>(nullable: false),
+                    Routeid = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RouteUser", x => new { x.RoutId, x.UserId });
+                    table.PrimaryKey("PK_routeUsers", x => x.id);
                     table.ForeignKey(
-                        name: "FK_RouteUser_route_RoutId",
-                        column: x => x.RoutId,
+                        name: "FK_routeUsers_route_Routeid",
+                        column: x => x.Routeid,
                         principalTable: "route",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_RouteUser_AppUser_UserId",
+                        name: "FK_routeUsers_AppUser_UserId",
                         column: x => x.UserId,
                         principalTable: "AppUser",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_RouteUser_UserId",
-                table: "RouteUser",
+                name: "IX_routeUsers_Routeid",
+                table: "routeUsers",
+                column: "Routeid");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_routeUsers_UserId",
+                table: "routeUsers",
                 column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "RouteUser");
+                name: "routeUsers");
 
             migrationBuilder.DropTable(
                 name: "route");

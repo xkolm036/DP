@@ -107,32 +107,38 @@ namespace CarPool.Migrations
 
             modelBuilder.Entity("CarPool.Models.RouteUser", b =>
                 {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
                     b.Property<int>("RoutId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("Routeid")
                         .HasColumnType("integer");
 
                     b.Property<string>("UserId")
                         .HasColumnType("text");
 
-                    b.HasKey("RoutId", "UserId");
+                    b.HasKey("id");
+
+                    b.HasIndex("Routeid");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("RouteUser");
+                    b.ToTable("routeUsers");
                 });
 
             modelBuilder.Entity("CarPool.Models.RouteUser", b =>
                 {
                     b.HasOne("CarPool.Models.Route", "Route")
                         .WithMany("RouteUser")
-                        .HasForeignKey("RoutId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Routeid");
 
                     b.HasOne("CarPool.Models.AppUser", "user")
                         .WithMany("RouteUser")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }
