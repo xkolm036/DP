@@ -14,6 +14,16 @@ namespace CarPool.Controllers
 {
     public class RouteController : Controller
     {
+        private readonly UserManager<AppUser> userManager;
+        private readonly SignInManager<AppUser> signInManager;
+
+        public RouteController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        {
+            this.userManager = userManager;
+            this.signInManager = signInManager;
+        }
+
+
 
         private string GetUsername()
         {
@@ -29,10 +39,12 @@ namespace CarPool.Controllers
         [Route("/Find")]
         public IActionResult FindRouteForm(Route r, string ReturnUrl)
         {
-           ModelState.Clear(); // zamezi zobrazeni validačni hlašky po prvním spuštení
-          //  return View("Clear");
-          return View("FindRouteForm");
+            ModelState.Clear(); // zamezi zobrazeni validačni hlašky po prvním spuštení
+                                //  return View("Clear");
+            return View("FindRouteForm");
         }
+
+
         [HttpGet]
         public IActionResult FindRoute(Route route)
         {
@@ -42,12 +54,11 @@ namespace CarPool.Controllers
 
             route.date = route.date.Add(route.time.TimeOfDay);
 
-          
+
             List<Route> routes = new List<Route>();
-            List<int> alreadyjoinRoutes = new List<int>();
             Route r = new Route();
-       
-        
+
+
 
 
             using (var db = new RoutesContext())
@@ -60,7 +71,7 @@ namespace CarPool.Controllers
                 foreach (Route routeFromQuery in query)
                 {
                     if (route.date.AddMinutes(-30).Ticks <= routeFromQuery.date.Ticks && routeFromQuery.date.Ticks <= route.date.AddMinutes(30).Ticks)
-                    routes.Add(routeFromQuery);
+                        routes.Add(routeFromQuery);
                 }
 
                 //Mark allready joined routes
@@ -69,8 +80,8 @@ namespace CarPool.Controllers
                 {
 
                     r = routes.Where(ro => ro.id == selrout.RoutId).FirstOrDefault();
-                    if(r!=null)
-                    r.connected = true;
+                    if (r != null)
+                        r.connected = true;
                 }
 
             }
@@ -82,11 +93,16 @@ namespace CarPool.Controllers
             return View("FindRouteResolutTable");
         }
 
+
         public IActionResult AddRouteToDB(Route route)
         {
             using (var cpx = new RoutesContext())
             {
+                
+
+
                 route.date = route.date.Add(route.time.TimeOfDay);
+                route.createdBy = userManager.GetUserName(User);
                 cpx.Routes.Add(route);
                 cpx.SaveChanges();
             }
@@ -100,6 +116,7 @@ namespace CarPool.Controllers
 
         }
 
+
         [Route("/Create")]
         [Authorize]
         public IActionResult CreateRouteForm()
@@ -109,22 +126,25 @@ namespace CarPool.Controllers
             return View();
         }
 
+
         [Route("/Route/ShowDetail")]
         public IActionResult ShowDetail(int id)
         {
             ViewData["Message"] = "Your application description page.";
-            Route routeFromDb=new Route();
+            Route routeFromDb = new Route();
 
             using (var db = new RoutesContext())
             {
-               routeFromDb= db.Routes.Where(r => r.id == id).FirstOrDefault();
+                routeFromDb = db.Routes.Where(r => r.id == id).FirstOrDefault();
 
             }
-        
+
 
             return View(routeFromDb);
         }
 
+
+        [HttpPost]
         [Route("/Route/JoinRoute")]
         public void JoinRoute(int id)
         {
@@ -136,7 +156,7 @@ namespace CarPool.Controllers
             var userId = claim.Value;
 
 
-            using (var routesdb=new RoutesContext())
+            using (var routesdb = new RoutesContext())
             {
                 routesdb.Add(new RouteUser { RoutId = id, UserId = userId });
                 routesdb.SaveChanges();
@@ -144,6 +164,48 @@ namespace CarPool.Controllers
 
             }
 
+
+        }
+
+
+        [Route("/Route/Logged")]
+        public IActionResult ShowLoggedRoutes()
+        {
+            List<Route> myRoutes = new List<Route>();
+
+
+            using (var routeContext = new RoutesContext())
+            {
+                var query = from RouteUser in routeContext.routeUsers
+                            join route in routeContext.Routes on RouteUser.RoutId equals route.id
+                            where RouteUser.UserId == GetUsername() && route.id == RouteUser.RoutId
+                            select route;
+
+
+                foreach (Route routeFromQuery in query)
+                {
+                    routeFromQuery.connected = true;
+                    myRoutes.Add(routeFromQuery);
+                }
+
+            }
+
+            ViewData["Routes"] = myRoutes;
+
+            return View("FindRouteResolutTable");
+
+        }
+
+
+        [Route("/Route/My")]
+        public IActionResult ShowMyRoutes()
+        {
+
+        
+
+
+
+            return View("FindRouteResolutTable");
 
         }
 

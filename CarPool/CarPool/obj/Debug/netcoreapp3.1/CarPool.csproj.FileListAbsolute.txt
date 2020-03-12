@@ -157,8 +157,6 @@ D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\bin\Debug\netcoreapp3.1\Microsoft.Ex
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
-D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\CarPool.MvcApplicationPartsAssemblyInfo.cs
-D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\CarPool.MvcApplicationPartsAssemblyInfo.cache
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.Internal.dll
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Abstractions.dll
@@ -170,5 +168,6 @@ D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\Razor\Views\
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\Razor\Views\Route\FindRouteForm.cshtml.g.cs
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\Razor\Views\Route\FindRouteResolutTable.cshtml.g.cs
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\Razor\Views\Route\ShowDetail.cshtml.g.cs
-D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_testLayout.cshtml.g.cs
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\Razor\Views\Route\Clear.cshtml.g.cs
+D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\CarPool.MvcApplicationPartsAssemblyInfo.cs
+D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\CarPool.MvcApplicationPartsAssemblyInfo.cache

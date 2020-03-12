@@ -8,6 +8,9 @@ namespace CarPool.Models
 {
     public class AppUser:IdentityUser
     {
-       public IList<RouteUser> RouteUser { get; set; }
+
+        public int nuberOfCreatedRoutes { get; set; }
+        public int nuberOfLoggedRoutes { get; set; }
+
     }
 }

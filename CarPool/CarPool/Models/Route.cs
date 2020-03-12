@@ -38,6 +38,9 @@ namespace CarPool.Models
         [Column("price")]
         public double price { get; set; }
 
+        [Column("CreatedBy")]
+        public string createdBy { get; set; }
+
         [NotMapped]
         public virtual bool connected { get; set; } = false;
 

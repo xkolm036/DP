@@ -1,21 +1,17 @@
 ﻿<!DOCTYPE html>
 @using CarPool.Areas.Identity.Pages.Account
 @using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - DiplomovaPrace</title>
-
-    <script src="~/lib/jquery/jquery.min.js"></script>
-    <script src="~/lib/bootstrap4/dist/js/bootstrap.min.js"></script>
-    <script src="~/lib/popper.js/dist/popper.min.js"></script>
-    <link rel="stylesheet" href="~/lib/bootstrap4/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
-    <script src="~/lib/font-awesome/js/all.min.js"></script>
-    @RenderSection("Scripts", required: false)
+    <link rel="stylesheet" href="~/lib/bootstrap4/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
     @RenderSection("CSS", required: false)
 
 
@@ -34,20 +30,20 @@
                         <partial name="_LoginPartial" />
                         <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Route" asp-action="FindRouteForm" title="Najít jízdu">Najít jízdu</a>
+                                <a class="nav-link text-dark" asp-controller="Route" asp-action="FindRouteForm" title="Najít jízdu"><i class="fa fa-search-location mr-2"></i>Najít jízdu</a>
 
 
                             </li>
                             @if (SignInManager.IsSignedIn(User))
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-controller="Route" asp-action="CreateRouteForm">Vytvořit jízdu</a>
+                                    <a class="nav-link text-dark" asp-controller="Route" asp-action="CreateRouteForm"><i class="fa fa-plus-circle mr-2"></i>Vytvořit jízdu</a>
                                 </li>
                                 <li class="nav-item ">
-                                    <a class="nav-link text-dark " asp-controller="Route" asp-action="CreateRouteForm">Přihlášené jízdy</a>
+                                    <a class="nav-link text-dark " asp-controller="Route" asp-action="ShowLoggedRoutes"><i class="fa fa-car-side mr-2"></i>Přihlášené jízdy</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-controller="Route" asp-action="CreateRouteForm">Vytvořit jízdu</a>
+                                    <a class="nav-link text-dark" asp-controller="Route" asp-action="CreateRouteForm"><i class="fa fa-bullhorn mr-2"></i>Nabídnuté  jízdy</a>
                                 </li>
                             }
                         </ul>
@@ -56,22 +52,29 @@
             </nav>
         </div>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div id="wrap">
+        <div id="main" class="container clear-top">
             @RenderBody()
-        </main>
+        </div>
     </div>
+    <footer class="footer"></footer>
 
-
-    <footer class="border-top footer text-muted">
+    <footer class="border-top card-footer text-muted">
         <div class="container">
             &copy; 2020 - CarPool - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-   
 
 
 
+
+
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/moment.js/moment.min.js"></script>
+    <script src="~/lib/bootstrap4/dist/js/bootstrap.js"></script>
+    <script src="~/lib/popper.js/dist/umd/popper.js"></script>
+    <script src="~/lib/font-awesome/js/all.js"></script>
+    @RenderSection("Scripts", required: false)
 
 
 

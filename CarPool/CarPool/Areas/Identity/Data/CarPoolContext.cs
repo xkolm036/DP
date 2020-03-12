@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CarPool.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarPool.Data
 {
-    public class CarPoolContext : IdentityDbContext<IdentityUser>
+    public class CarPoolContext : IdentityDbContext<AppUser>
     {
 
 

@@ -12,7 +12,7 @@ using CarPool.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
+using CarPool.Models;
 
 namespace CarPool
 {
@@ -31,7 +31,7 @@ namespace CarPool
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(
                     Configuration.GetConnectionString("CarPoolUsers")));
-            services.AddDefaultIdentity<IdentityUser>(options =>
+            services.AddDefaultIdentity<AppUser>(options =>
             {
               //  options.SignIn.RequireConfirmedAccount = true;
                 options.Password.RequiredLength = 8;

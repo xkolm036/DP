@@ -1,11 +1,14 @@
 ﻿@using CarPool.Models;
 @section Scripts{
+    <script src="~/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
     <script src="~/js/GeoInput.js"></script>
     <script src="~/js/DateTimePicker.js"></script>
+
 
 }
 
 @section CSS{
+    <link rel="stylesheet" href="~/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" />
     <link rel="stylesheet" href="~/css/HomePage.css" />
 }
 
@@ -19,7 +22,7 @@
 
 <form asp-controller="Route" asp-action="FindRoute" method="get">
     <div>
-    
+
         <div class="row">
             <div class="col-sm-8">
 
@@ -29,7 +32,7 @@
                     </div>
                     <input asp-for="@Model.startDestination" class="form-control focusSelect adress_inp" placeholder="zadejte alepon tři znaky" autocomplete="off" data-target="input-Sorce-Content">
                 </div>
-                <span class="text-danger"  asp-validation-for="@Model.startDestination"> </span>
+                <span class="text-danger" asp-validation-for="@Model.startDestination"> </span>
                 <div id="input-Sorce-Content" class="list-group d-none position-absolute ml-md-5 hiddenDiv">
                     <span class="sr-only">Loading...</span>
                 </div>
@@ -37,7 +40,7 @@
         </div>
 
         <div>
-   
+
 
             <div class="row">
                 <div class="col-sm-8">
@@ -47,7 +50,7 @@
                         </div>
                         <input asp-for="@Model.finalDestination" class="form-control focusSelect adress_inp" placeholder="zadejte alepon tři znaky" autocomplete="off" data-target="input-Destination-Content">
                     </div>
-                    <span  class="text-danger" asp-validation-for="@Model.finalDestination"> </span>
+                    <span class="text-danger" asp-validation-for="@Model.finalDestination"> </span>
                     <div id="input-Destination-Content" class="list-group d-none position-absolute ml-md-5 hiddenDiv">
                         <span class="sr-only">Loading...</span>
                     </div>
@@ -64,7 +67,7 @@
                     </div>
                     <input asp-for="@Model.date" type="text" class="form-control dateinput">
                 </div>
-                <span class="text-danger"  asp-validation-for="@Model.date"> </span>
+                <span class="text-danger" asp-validation-for="@Model.date"> </span>
             </div>
 
             <div class="col-sm-4">
