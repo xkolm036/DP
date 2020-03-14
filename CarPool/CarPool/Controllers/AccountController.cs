@@ -25,7 +25,6 @@ namespace CarPool.Controllers
             IEnumerable<AppUser> users = userManager.Users;
 
 
-            int a = 10;
 
         }
 

@@ -42,7 +42,7 @@ namespace CarPool.Models
         public string createdBy { get; set; }
 
         [NotMapped]
-        public virtual bool connected { get; set; } = false;
+        public virtual bool? connected { get; set; } = false;
 
     }
 }

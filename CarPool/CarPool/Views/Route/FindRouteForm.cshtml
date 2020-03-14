@@ -18,7 +18,7 @@
     ViewData["Title"] = "Home Page";
 }
 
-<h1 class="mt-3 mb-3">Najít jízdu</h1>
+<h1>Najít jízdu</h1>
 
 <form asp-controller="Route" asp-action="FindRoute" method="get">
     <div>
@@ -60,7 +60,7 @@
 
         <div class="row">
             <div class="col-sm-4">
-                <p>Datum:</p>
+                <span>Datum:</span>
                 <div class="input-group mb-1 ">
                     <div class="input-group-prepend ">
                         <div class="input-group-text"><span class="fa fa-calendar"></span></div>
@@ -71,7 +71,7 @@
             </div>
 
             <div class="col-sm-4">
-                <p>Cas:</p>
+                <span>Čas:</span>
                 <div class="input-group mb-1 ">
                     <div class="input-group-prepend ">
                         <div class="input-group-text"><span class="fa fa-clock"></span></div>

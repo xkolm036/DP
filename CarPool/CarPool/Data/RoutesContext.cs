@@ -16,11 +16,11 @@ namespace CarPool.Data
 
         public DbSet<RouteUser> routeUsers { get; set; }
 
-    
+      
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-           => optionsBuilder.UseNpgsql("Server=127.0.0.1;Port=5432;Database=geography;User Id=postgres;Password=polav1994");
+           => optionsBuilder.UseSqlServer("Server=tcp:dpkolarik.database.windows.net,1433;Initial Catalog=Geography;Persist Security Info=False;User ID=mkolarik;Password=Polav1994!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
 
 
 

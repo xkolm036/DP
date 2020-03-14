@@ -13,11 +13,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using CarPool.Models;
+using System.Configuration;
 
 namespace CarPool
 {
     public class Startup
     {
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -28,9 +30,8 @@ namespace CarPool
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseNpgsql(
-                    Configuration.GetConnectionString("CarPoolUsers")));
+
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("GeoDb")));
             services.AddDefaultIdentity<AppUser>(options =>
             {
               //  options.SignIn.RequireConfirmedAccount = true;
@@ -40,7 +41,17 @@ namespace CarPool
             }
             )
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.ConfigureApplicationCookie(options => options.LoginPath = "/Identity/Account/Login");
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Identity/Account/Login";
+                options.LogoutPath = "/Find";
+            }
+               
+              
+
+            
+           );
+         
             services.AddControllersWithViews();
             services.AddRazorPages();
 
@@ -74,7 +85,7 @@ namespace CarPool
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Route}/{action=FindRouteForm}/{id?}");
+                    pattern: "{controller=Route}/{action=FindRouteForm}");
                 endpoints.MapRazorPages();
             });
         }

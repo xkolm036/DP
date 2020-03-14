@@ -168,6 +168,14 @@ D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\Razor\Views\
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\Razor\Views\Route\FindRouteForm.cshtml.g.cs
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\Razor\Views\Route\FindRouteResolutTable.cshtml.g.cs
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\Razor\Views\Route\ShowDetail.cshtml.g.cs
-D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\Razor\Views\Route\Clear.cshtml.g.cs
+D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\bin\Debug\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll
+D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\bin\Debug\netcoreapp3.1\System.Drawing.Common.dll
+D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\CarPool.MvcApplicationPartsAssemblyInfo.cs
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\CarPool.MvcApplicationPartsAssemblyInfo.cache
+D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
+D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\Razor\Views\Route\ShowMyRoutes.cshtml.g.cs

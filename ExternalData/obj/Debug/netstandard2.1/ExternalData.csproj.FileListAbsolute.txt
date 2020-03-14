@@ -1,8 +1,0 @@
-D:\OneDrive\Desktop\CarPoll\ExternalData\bin\Debug\netstandard2.1\ExternalData.deps.json
-D:\OneDrive\Desktop\CarPoll\ExternalData\bin\Debug\netstandard2.1\ExternalData.dll
-D:\OneDrive\Desktop\CarPoll\ExternalData\obj\Debug\netstandard2.1\ExternalData.csprojAssemblyReference.cache
-D:\OneDrive\Desktop\CarPoll\ExternalData\obj\Debug\netstandard2.1\ExternalData.AssemblyInfoInputs.cache
-D:\OneDrive\Desktop\CarPoll\ExternalData\obj\Debug\netstandard2.1\ExternalData.AssemblyInfo.cs
-D:\OneDrive\Desktop\CarPoll\ExternalData\bin\Debug\netstandard2.1\ExternalData.pdb
-D:\OneDrive\Desktop\CarPoll\ExternalData\obj\Debug\netstandard2.1\ExternalData.dll
-D:\OneDrive\Desktop\CarPoll\ExternalData\obj\Debug\netstandard2.1\ExternalData.pdb

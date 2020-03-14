@@ -1,5 +1,5 @@
 ﻿html, body {
-    height: 90%;
+    height: 92%;
 }
 
 #wrap {
@@ -7,14 +7,19 @@
 }
 
 #main {
-    overflow: auto;
+    overflow: visible;
     padding-bottom: 150px; /* this needs to be bigger than footer height*/
 }
 
 .footer {
     position: relative;
-    margin-top: -10px; /* negative value of footer height */
+    margin-top: -50px; /* negative value of footer height */
     height: 60px;
     clear: both;
     padding-top: 20px;
+}
+h1{
+    margin-top:5%;
+    margin-bottom:18px;
+
 }

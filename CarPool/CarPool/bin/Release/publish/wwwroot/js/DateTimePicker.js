@@ -16,9 +16,11 @@ $(function () {
             clear: 'fa fa-trash-o',
             close: 'fa fa-times'
         },
-        useCurrent: true,
+        format: 'YYYY/MM/DD',
         collapse: true,
-        format: 'DD.MM.YYYY'
+        useCurrent: true,
+        minDate: moment()
+      
     });
 
 });
@@ -37,4 +39,5 @@ $(function () {
     });
 
 });
+
 

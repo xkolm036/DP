@@ -1,8 +1,9 @@
 ﻿@using CarPool.Models;
 
+<h1>@ViewData["Title"]</h1>
 
-<h2>Nalezené jízdy</h2>
-<div id="Resolut">
+@if (TempData.Count == 0)
+{
     <table class="table table-hover">
         <thead>
             <tr>
@@ -22,30 +23,46 @@
 
             @foreach (Route routeFromDb in (List<Route>)ViewData["Routes"])
             {
-                <tr>
-                    <td>@routeFromDb.date.ToString("dd.MM")</td>
-                    <td>@routeFromDb.date.ToString("HH:mm")</td>
-                    <td>@routeFromDb.startDestination</td>
-                    <td>@routeFromDb.finalDestination</td>
-                    <td>@routeFromDb.seats</td>
-                    <td>@routeFromDb.price</td>
-                    <td><a href="/Route/ShowDetail?id=@routeFromDb.id">Detail</a></td>
+            <tr>
+                <td>@routeFromDb.date.ToString("dd.MM.yyyy")</td>
+                <td>@routeFromDb.date.ToString("HH:mm")</td>
+                <td>@routeFromDb.startDestination</td>
+                <td>@routeFromDb.finalDestination</td>
+                <td>@routeFromDb.seats</td>
+                <td>@routeFromDb.price</td>
+                <td><a href="/Route/ShowDetail?id=@routeFromDb.id">Detail</a></td>
 
-                    @if (routeFromDb.connected == false)
-                    {
-                        <td><a href="#" id="@routeFromDb.id" title="join">Připojit se</a></td>
-                    }
-                    else
-                    {
-                        <td><a href="#" @routeFromDb.id title="delete">Odhlásit se</a></td>
-                    }
-                </tr>
+                @if (routeFromDb.connected == false)
+                {
+                    <td><a href="#" id="@routeFromDb.id" title="join">Připojit se</a></td>
+                }
+                else if (routeFromDb.connected == true)
+                {
+                    <td><a href="#" @routeFromDb.id title="leave">Odhlásit se</a></td>
+                }
+                else
+                {
+                    <td><a href="#" id="@routeFromDb.id" title="delete">Smazat</a></td>
+                }
+            </tr>
 
             }
         </tbody>
     </table>
+}
+else
+{
 
-</div>
+    <div class="col-4 mx-auto mt-auto">
+        <div class="card card-body mb-2 ,mt-5">
+            @TempData["EmptyErrMessage"].ToString()
+        </div>
+    </div>
+
+
+
+
+}
 
 <script src="~/lib/jquery/jquery.js"></script>
 <script>
@@ -55,26 +72,48 @@
         var link = $(this);
 
         $.ajax({ //send request to find city/street
-           
+
             url: "/Route/JoinRoute",
             type: "POST",
             data: { id: link.attr("id") },  //data send to controller
             success: function () {
-                link.attr("title", "delete");
+                link.attr("title", "leave");
                 link.text("Odhlásit se");
             }
         });
-
-
-
-
     });
 
 
+    $('a[title="leave"]').click(function () {
+        var link = $(this);
+
+        $.ajax({ //send request to find city/street
+
+            url: "/Route/LeaveRoute",
+            type: "POST",
+            data: { id: link.attr("id") },  //data send to controller
+            success: function () {
+                link.attr("title", "join");
+                link.text("Přihásit se");
+            }
+        });
+    });
 
 
+  $('a[title="delete"]').click(function () {
+        var link = $(this);
 
+        $.ajax({ //send request to find city/street
 
+            url: "/Route/Delete",
+            type: "POST",
+            data: { id: link.attr("id") },  //data send to controller
+            success: function () {
+                link.parent().parent().hide();
+               
+            }
+        });
+    });
 
 
 

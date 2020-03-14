@@ -43,7 +43,7 @@
                                     <a class="nav-link text-dark " asp-controller="Route" asp-action="ShowLoggedRoutes"><i class="fa fa-car-side mr-2"></i>Přihlášené jízdy</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-controller="Route" asp-action="CreateRouteForm"><i class="fa fa-bullhorn mr-2"></i>Nabídnuté  jízdy</a>
+                                    <a class="nav-link text-dark" asp-controller="Route" asp-action="ShowMyRoutes"><i class="fa fa-bullhorn mr-2"></i>Nabídnuté  jízdy</a>
                                 </li>
                             }
                         </ul>
@@ -57,9 +57,8 @@
             @RenderBody()
         </div>
     </div>
-    <footer class="footer"></footer>
 
-    <footer class="border-top card-footer text-muted">
+    <footer class="border-top card-footer text-muted footer">
         <div class="container">
             &copy; 2020 - CarPool - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>

@@ -13,16 +13,13 @@ namespace CarPool.Controllers
         public IActionResult dropDownItems(string geo)
         {
             geo = geo.Trim();
-            List<School> school = new List<School>();
 
+            //PSSQLControll DB = new PSSQLControll();
 
-            PSSQLControll DB = new PSSQLControll();
-
+            MSSQL DB = new MSSQL();
             ViewData["City"] = DB.FindCity(geo);
             ViewData["Street"] = DB.FindStreet(geo);
             ViewData["School"] = DB.FindSchool(geo);
-
-
 
             DB.CloseConnection();
 

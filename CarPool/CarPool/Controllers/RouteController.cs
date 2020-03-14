@@ -25,18 +25,9 @@ namespace CarPool.Controllers
 
 
 
-        private string GetUsername()
-        {
-            var claimsIdentity = (ClaimsIdentity)this.User.Identity;
-            var claim = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
-            var userId = claim.Value;
-
-            return userId.ToString();
-
-        }
-
         [Route("/")]
         [Route("/Find")]
+        [Route("/Home/Index")]
         public IActionResult FindRouteForm(Route r, string ReturnUrl)
         {
             ModelState.Clear(); // zamezi zobrazeni validačni hlašky po prvním spuštení
@@ -64,7 +55,7 @@ namespace CarPool.Controllers
             using (var db = new RoutesContext())
             {
                 var query = from ro in db.Routes
-                            where route.startDestination == ro.startDestination && route.finalDestination == ro.finalDestination
+                            where route.startDestination == ro.startDestination && route.finalDestination == ro.finalDestination && ro.createdBy != userManager.GetUserName(User)
                             select ro;
 
                 //Select route is 1h horizont
@@ -75,7 +66,7 @@ namespace CarPool.Controllers
                 }
 
                 //Mark allready joined routes
-                var selectedroutes = db.routeUsers.Where(ru => ru.UserId == GetUsername());
+                var selectedroutes = db.routeUsers.Where(ru => ru.UserId == userManager.GetUserId(User));
                 foreach (RouteUser selrout in selectedroutes)
                 {
 
@@ -87,19 +78,21 @@ namespace CarPool.Controllers
             }
 
             ViewData["Routes"] = routes;
-            ViewBag.FindingRoute = route;
+            ViewData["Title"] = "Nalezené jízdy";
+            if (routes.Count == 0)
+                TempData["EmptyErrMessage"] = "Nebyly nalezeny žadné jízdy";
+            //   ViewBag.FindingRoute = route;
 
 
             return View("FindRouteResolutTable");
         }
 
-
+        [Authorize]
+        [HttpPost]
         public IActionResult AddRouteToDB(Route route)
         {
             using (var cpx = new RoutesContext())
             {
-                
-
 
                 route.date = route.date.Add(route.time.TimeOfDay);
                 route.createdBy = userManager.GetUserName(User);
@@ -143,22 +136,14 @@ namespace CarPool.Controllers
             return View(routeFromDb);
         }
 
-
+        [Authorize]
         [HttpPost]
         [Route("/Route/JoinRoute")]
         public void JoinRoute(int id)
         {
-            ViewData["Message"] = "Your application description page.";
-            Route routeFromDb = new Route();
-
-            var claimsIdentity = (ClaimsIdentity)this.User.Identity;
-            var claim = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
-            var userId = claim.Value;
-
-
             using (var routesdb = new RoutesContext())
             {
-                routesdb.Add(new RouteUser { RoutId = id, UserId = userId });
+                routesdb.Add(new RouteUser { RoutId = id, UserId = userManager.GetUserId(User) });
                 routesdb.SaveChanges();
 
 
@@ -167,7 +152,26 @@ namespace CarPool.Controllers
 
         }
 
+        [Authorize]
+        [HttpPost]
+        [Route("/Route/LeaveRoute")]
+        public void LeaveRoute(int id)
+        {
+            ViewData["Message"] = "Your application description page.";
+            Route routeFromDb = new Route();
 
+
+
+            using (var routesdb = new RoutesContext())
+            {
+                routesdb.Remove(new RouteUser { RoutId = id, UserId = userManager.GetUserId(User) });
+                routesdb.SaveChanges();
+            }
+
+
+        }
+
+        [Authorize]
         [Route("/Route/Logged")]
         public IActionResult ShowLoggedRoutes()
         {
@@ -178,7 +182,7 @@ namespace CarPool.Controllers
             {
                 var query = from RouteUser in routeContext.routeUsers
                             join route in routeContext.Routes on RouteUser.RoutId equals route.id
-                            where RouteUser.UserId == GetUsername() && route.id == RouteUser.RoutId
+                            where RouteUser.UserId == userManager.GetUserId(User) && route.id == RouteUser.RoutId
                             select route;
 
 
@@ -191,23 +195,73 @@ namespace CarPool.Controllers
             }
 
             ViewData["Routes"] = myRoutes;
+            ViewData["Title"] = "Přihlášené jízdy";
+
+            if (myRoutes.Count == 0)
+                TempData["EmptyErrMessage"] = "Dosud nejsi přihlášen k žadné jízdě";
+
 
             return View("FindRouteResolutTable");
 
         }
 
-
+        [Authorize]
         [Route("/Route/My")]
         public IActionResult ShowMyRoutes()
         {
+            List<Route> createtByUser = new List<Route>();
 
-        
+            using (var rctx = new RoutesContext())
+            {
+                var query = rctx.Routes.Where(r => r.createdBy == userManager.GetUserName(User));
 
+                foreach (Route route in query)
+                {
+                    route.connected = null;
+                    createtByUser.Add(route);
+                }
+            }
 
+            ViewData["Routes"] = createtByUser;
+            ViewData["Title"] = "Vytvořené jízdy";
+
+            if (createtByUser.Count == 0)
+                TempData["EmptyErrMessage"] = "Dosud jsi nenabídl žádné jízdy";
 
             return View("FindRouteResolutTable");
 
         }
+
+        [Authorize]
+        [Route("/Route/Delete")]
+        [HttpPost]
+        public void DeleteRoute(int id)
+        {
+
+            using (var ctx = new RoutesContext())
+            {
+                Route ro = new Route();
+                ro = ctx.Routes.Where(r => r.id == id).FirstOrDefault();
+
+                if (ro.createdBy.Equals(userManager.GetUserName(User)))
+                {
+
+                    var routesToDelete = ctx.routeUsers.Where(r => r.RoutId == id);
+                    foreach (RouteUser ru in routesToDelete)
+                    {
+                        ctx.Remove(ru);
+                    }
+
+
+                    ro = ctx.Routes.Where(r => r.id == id && r.createdBy == userManager.GetUserName(User)).FirstOrDefault();
+                    ctx.Routes.Remove(ro );
+                    ctx.SaveChanges();
+                }
+            }
+
+
+        }
+
 
     }
 }
