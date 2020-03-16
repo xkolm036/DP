@@ -1,0 +1,84 @@
+﻿@using CarPool.Models;
+
+<h1>@ViewData["Title"]</h1>
+
+@if (TempData.Count == 0)
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Datum</th>
+                <th>Cas</th>
+                <th>Odkud</th>
+                <th>Kam</th>
+                <th>Volná Místa</th>
+                <th>Cena</th>
+                <th>Detail</th>
+                <th>Připojit se</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (Route routeFromDb in (List<Route>)ViewData["Routess"])
+            {
+                <tr>
+                    <td>@routeFromDb.date.ToString("dd.MM.yyyy")</td>
+                    <td>@routeFromDb.date.ToString("HH:mm")</td>
+                    <td>@routeFromDb.startDestination</td>
+                    <td>@routeFromDb.finalDestination</td>
+                    <td>@routeFromDb.seats</td>
+                    <td>@routeFromDb.price</td>
+                    <td><a href="/Route/ShowDetail?id=@routeFromDb.id">Detail</a></td>
+                    <td><a href="#" id="@routeFromDb.id" title="delete">Smazat</a></td>
+                    }
+
+                </tr>
+
+            }
+        </tbody>
+    </table>
+}
+else
+{
+
+    <div class="col-4 mx-auto mt-auto">
+        <div class="card card-body mb-2 ,mt-5">
+            @TempData["EmptyErrMessage"].ToString()
+        </div>
+    </div>
+
+
+
+
+}
+
+<script src="~/lib/jquery/jquery.js"></script>
+<script>
+
+
+    $('a[title="delete"]').click(function () {
+        var link = $(this);
+
+        $.ajax({ //send request to find city/street
+
+            url: "/Route/JoinRoute",
+            type: "POST",
+            data: { id: link.attr("id") },  //data send to controller
+            success: function () {
+                link.attr("title", "leave");
+                link.text("Odhlásit se");
+            }
+        });
+    });
+
+
+
+
+
+
+
+
+
+</script>

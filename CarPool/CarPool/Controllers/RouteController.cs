@@ -102,7 +102,7 @@ namespace CarPool.Controllers
 
 
 
-            return View("CreateRouteForm");
+            return View("AddRouteNextStep");
 
 
 
@@ -237,6 +237,7 @@ namespace CarPool.Controllers
         [HttpPost]
         public void DeleteRoute(int id)
         {
+
 
             using (var ctx = new RoutesContext())
             {

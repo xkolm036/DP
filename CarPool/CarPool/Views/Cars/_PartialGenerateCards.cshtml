@@ -1,0 +1,35 @@
+﻿@foreach (Car c in (List<Car>)ViewData["Cars"])
+{
+
+    <div class="card" style="width:400px" id="@c.id">
+        <h2>@c.brand @c.model</h2>
+        <img class="card-img-top" src="img_avatar1.png" alt="Card image" style="width:100%">
+        <div class="card-body">
+
+
+            <div class="row">
+                <div class="col-4"><label>Počet míst:</label></div>
+                <div class="col-8"><label> <input class="form-control bg-light" type="text" id="bbbb" name="country" value="Norway" readonly></label></div>
+            </div>
+
+            <div class="row">
+                <div class="col-4"><label>Barva: </label></div>
+                <div class="col-8"><label> <input class="form-control bg-light" type="text" id="country" name="country" value="Norway" readonly></label></div>
+            </div>
+
+            <div class="row">
+                <div class="col-4"><label>SPZ: </label></div>
+                <div class="col-8"><label> <input class="form-control bg-light" type="text" id="country" name="country" value="Norway" readonly></label></div>
+            </div>
+            <label>Popis:</label><br />
+            <textarea class="form-control bg-light" readonly></textarea>
+            <br />   <br />
+
+            <a href="#" class="btn btn-primary" title="EditButton">Edit</a>
+            <a href="#" class="btn btn-primary d-none" title="CancelButton">Cancel</a>
+            <a href="#" class="btn btn-primary d-none" title="SaveButton">Save</a>
+            <a href="#" class="btn btn-primary" title="DeleteButton">Delete</a>
+
+        </div>
+    </div>
+}

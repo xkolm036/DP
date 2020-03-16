@@ -1,0 +1,34 @@
+﻿<button class="btn btn btn-primary" title="add"> Přidat nové vozidlo </button>
+<h1 class="mt-2">Moje automobily</h1>
+
+<partial name="_PartialGenerateCards" />
+
+<script src="~/lib/jquery/jquery.min.js"></script>
+<script>
+    $('a[title="EditButton"]').click(function () {
+        $(this).parent().find("input").removeAttr("readonly");
+        $(this).parent().find("input").textarea("readonly");
+
+        $(this).parent().find('a[title="EditButton"]').addClass("d-none");
+        $(this).parent().find('a[title="DeleteButton"]').addClass("d-none");
+
+        $(this).parent().find('a[title="CancelButton"]').removeClass("d-none");
+        $(this).parent().find('a[title="SaveButton"]').removeClass("d-none");
+    });
+
+    $('a[title="CancelButton"]').click(function () {
+        $(this).parent().find("input").attr("readonly", "");
+        $(this).parent().find("input").attr("readonly", "");
+
+
+        $(this).parent().find('a[title="EditButton"]').removeClass("d-none");
+        $(this).parent().find('a[title="DeleteButton"]').removeClass("d-none");
+
+        $(this).parent().find('a[title="CancelButton"]').addClass("d-none");
+        $(this).parent().find('a[title="SaveButton"]').addClass("d-none");
+
+    });
+
+
+</script>
+

@@ -19,9 +19,9 @@
 <body>
     <header>
         <div class="container">
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-                <div class="container">
-                    <a class="navbar-brand" asp-action="Route" asp-controller="FindRouteForm">CarPool</a>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 pl-0">
+                <div class="container pl-0">
+                    <!-- <a class="navbar-brand" asp-action="Route" asp-controller="FindRouteForm">CarPool</a>-->
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -30,7 +30,7 @@
                         <partial name="_LoginPartial" />
                         <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Route" asp-action="FindRouteForm" title="Najít jízdu"><i class="fa fa-search-location mr-2"></i>Najít jízdu</a>
+                                <a class="nav-link text-dark" asp-controller="Route" asp-action="FindRouteForm" title="Najít jízdu"><i class="fa fa-search-location ml-0 mr-2"></i>Najít jízdu</a>
 
 
                             </li>
@@ -44,6 +44,10 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-controller="Route" asp-action="ShowMyRoutes"><i class="fa fa-bullhorn mr-2"></i>Nabídnuté  jízdy</a>
+                                </li>
+                                <li>
+                                    
+                                    <a class="nav-link text-dark" asp-controller="Cars" asp-action="ShowMyCars"><i class="fa fa-warehouse mr-2"></i>Moje Vozidla</a>
                                 </li>
                             }
                         </ul>

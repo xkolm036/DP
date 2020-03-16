@@ -15,15 +15,11 @@ namespace CarPool.Areas.Identity
     {
         public void Configure(IWebHostBuilder builder)
         {
-            builder.ConfigureServices((context, services) => {
-                var connBuilder = new NpgsqlConnectionStringBuilder(
-                    context.Configuration.GetConnectionString("CarPoolUsers"));
-       
-
-                services.AddDbContext<CarPoolContext>(options =>
-                    options.UseNpgsql(connBuilder.ConnectionString));
-
+            builder.ConfigureServices((context, services) =>
+            {
             });
         }
     }
 }
+
+
