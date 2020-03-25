@@ -166,7 +166,6 @@ D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Release\netcoreapp3.1\CarPool.Vi
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Release\netcoreapp3.1\CarPool.csproj.CopyComplete
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Release\netcoreapp3.1\CarPool.dll
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Release\netcoreapp3.1\CarPool.pdb
-D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Release\netcoreapp3.1\Razor\Views\Route\Clear.cshtml.g.cs
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Release\netcoreapp3.1\Razor\Views\Route\CreateRouteForm.cshtml.g.cs
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Release\netcoreapp3.1\Razor\Views\Route\FindRouteForm.cshtml.g.cs
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Release\netcoreapp3.1\Razor\Views\Route\FindRouteResolutTable.cshtml.g.cs
@@ -179,3 +178,8 @@ D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\bin\Release\netcoreapp3.1\runtimes\u
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\bin\Release\netcoreapp3.1\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Release\netcoreapp3.1\Razor\Views\Cars\ShowMyCars.cshtml.g.cs
+D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Release\netcoreapp3.1\Razor\Views\Cars\_PartialGenerateCards.cshtml.g.cs
+D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Release\netcoreapp3.1\Razor\Views\Route\AddRouteNextStep.cshtml.g.cs
+D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Release\netcoreapp3.1\Razor\Views\Route\ShowMyRoutes.cshtml.g.cs
+D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\bin\Release\netcoreapp3.1\MoreLinq.dll

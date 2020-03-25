@@ -6,14 +6,14 @@ using System.Collections.Generic;
 
 
 
-namespace Data
+namespace CarPool.GeoDbProvider
 
 {
-    public class MSSQL
+    public class PSSQL
     {
         NpgsqlConnection conn;
 
-        public MSSQL()
+        public PSSQL()
         {
             string connetctionString = "Host=localhost;Username=postgres;Password=polav1994;Database=geography";
             conn  = new NpgsqlConnection(connetctionString);

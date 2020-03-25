@@ -5,21 +5,63 @@ using System.Collections.Generic;
 using CarPool.Models;
 using Microsoft.Extensions.Configuration;
 
-namespace data
+namespace CarPool.GeoDbProvider
 {
-    public class SQLControll
+    public class MSSQL
     {
         SqlConnection cnn;
 
-        public SQLControll(IConfiguration configuration)
+        public MSSQL()
         {
 
-            string ConnectionString = configuration.GetConnectionString("GeoDb");
-           //string ConnectionString = @"Server=tcp:dpkolarik.database.windows.net,1433;Initial Catalog=Geography;Persist Security Info=False;User ID=mkolarik;Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            //string ConnectionString = configuration.GetConnectionString("GeoDb");
+            string ConnectionString = @"Server=tcp:dpkolarik.database.windows.net,1433;Initial Catalog=Geography;Persist Security Info=False;User ID=mkolarik;Password=Polav1994!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
             cnn = new SqlConnection(ConnectionString);
             cnn.Open();
         }
+
+        public List<City> GetAllStreets()
+        {
+            List<City> cityFromDB = new List<City>();
+            string commandText = (@"select City.Name as City, Street.Name as Street, City.Region as region from City
+                                    inner join CityPart on CityPart.City_Id=City.Id
+                                    inner join Street on Street.CityPart_Id =CityPart.Id
+                                    ");
+            SqlCommand command = new SqlCommand(commandText, cnn);
+
+            SqlDataReader dataReader;
+            dataReader = command.ExecuteReader();
+
+            while (dataReader.Read())
+            {
+                cityFromDB.Add(new City { cityName = dataReader["City"].ToString(), regionName = dataReader["Region"].ToString(), streetName = dataReader["Street"].ToString() });
+                //output += dataReader.GetValue(0) + " (Okres "+ dataReader["Region"].ToString() +")" + ";";
+            }
+            dataReader.Close();
+            return cityFromDB;
+
+        }
+
+        public List<City> GetAllCity()
+        {
+            List<City> cityFromDB = new List<City>();
+            string commandText = (@"Select * From City");
+            SqlCommand command = new SqlCommand(commandText, cnn);
+
+            SqlDataReader dataReader;
+            dataReader = command.ExecuteReader();
+
+            while (dataReader.Read())
+            {
+                cityFromDB.Add(new City { cityName = dataReader["Name"].ToString(), regionName = dataReader["Region"].ToString() });
+                //output += dataReader.GetValue(0) + " (Okres "+ dataReader["Region"].ToString() +")" + ";";
+            }
+            dataReader.Close();
+            return cityFromDB;
+
+        }
+
 
         public List<City> FindCity(string city)
         {
@@ -46,6 +88,33 @@ namespace data
             return cityFromDB;
 
         }
+
+        public List<School> FindAllSchools()
+        {
+
+            List<School> SchoolFromDB = new List<School>();
+
+            string commandText = (@"Select Name,SohrtName from dbo.School ");
+
+            SqlCommand command = new SqlCommand(commandText, cnn);
+
+
+            SqlDataReader dataReader;
+            // string output = "";
+            dataReader = command.ExecuteReader();
+
+
+            while (dataReader.Read())
+            {
+                SchoolFromDB.Add(new School { name = dataReader.GetValue(0).ToString(), shortName = dataReader.GetValue(1).ToString() });
+
+                //SchoolFromDB.Add(new School { name = dataReader.GetValue(0).ToString(), shortName = dataReader.GetValue(1).ToString(), x = float.Parse( dataReader.GetValue(2).ToString()), y=float.Parse( dataReader.GetValue(3).ToString()) });
+            }
+            dataReader.Close();
+
+            return SchoolFromDB;
+        }
+
 
         public List<City> FindStreet(string street)
         {

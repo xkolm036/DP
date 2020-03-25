@@ -17,11 +17,13 @@
 
 @foreach (City city in (List<City>)ViewData["Street"])
 {
-    <div class="list-group-item">
-        <i class="fas fa-map-marker-alt "></i>
-        <a href="#" data-content="Street">@city.print()</a>
-        <br>
-    </div>
+<div class="list-group-item">
+    <i class="fas fa-map-marker-alt "></i>
+    <a href="#" data-content="Street">@city.cityName @city.streetName</a>
+    <br>
+    <span>Okres: @city.regionName</span>
+    <br>
+</div>
 }
 
 
