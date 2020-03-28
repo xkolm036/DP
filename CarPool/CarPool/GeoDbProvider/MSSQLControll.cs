@@ -67,9 +67,6 @@ namespace CarPool.GeoDbProvider
         {
             List<City> cityFromDB = new List<City>();
 
-
-
-
             string commandText = (@"SELECT TOP 4 City.Name,City.Region from City WHERE City.Name COLLATE Latin1_general_CI_AI Like '%'+@City+'%'
                                   UNION
                                   SELECT City.Name,City.Region from City WHERE City.Name COLLATE Latin1_general_CI_AI = @City

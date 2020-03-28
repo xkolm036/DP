@@ -164,7 +164,8 @@ namespace CarPool.Controllers
 
             using (var routesdb = new RoutesContext())
             {
-                routesdb.Remove(new RouteUser { RoutId = id, UserId = userManager.GetUserId(User) });
+                var routeTodelete = routesdb.routeUsers.Where(ru => ru.RoutId == id && ru.UserId == userManager.GetUserId(User)).FirstOrDefault();
+                routesdb.routeUsers.Remove(routeTodelete);
                 routesdb.SaveChanges();
             }
 
