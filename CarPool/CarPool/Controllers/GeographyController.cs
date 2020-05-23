@@ -14,6 +14,12 @@ namespace CarPool.Controllers
 {
     public class GeographyController : Controller
     {
+        public GeographyController(IMemoryCache cache)
+        {
+            _cache = cache;
+
+        }
+
         private IMemoryCache _cache;
         private List<City> AllCities()
         {
@@ -120,11 +126,6 @@ namespace CarPool.Controllers
 
 
 
-        public GeographyController(IMemoryCache cache)
-        {
-            _cache = cache;
-
-        }
 
 
 

@@ -13,9 +13,10 @@
 
 @model Route
 
+<partial name="_Messages" />
 
+<h1>Vytvořit jízdu</h1>
 
-<h1 >Vytvořit jízdu</h1>
 
 <form asp-controller="Route" asp-action="AddRouteToDB" method="post">
 
@@ -84,10 +85,17 @@
         <div class="col-sm-4">
             <div class="form-group">
                 <label for="count">Počet míst</label>
-                <select asp-for="@Model.seats" class="form-control" id="count">
-                    @for (int i = 1; i <= 10; i++)
+                <select asp-for="@Model.seats" class="form-control" id="seats">
+                    @if ((ViewData["UsersCars"] as List<Car>).Count() != 0)
                     {
-                        <option>@i</option>
+                        @for (int i = 1; i <= (ViewData["UsersCars"] as List<Car>).First().seats; i++)
+                        {
+                            <option>@i</option>
+                        }
+                    }
+                    else
+                    {
+                        <option>0</option>
                     }
                 </select>
             </div>
@@ -97,8 +105,11 @@
         <div class="col-sm-4">
             <div class="form-group">
                 <label for="Car">Auto</label>
-                <select asp-for="@Model.seats" class="form-control" id="Car">
-                    <option>octa</option>
+                <select asp-for="@Model.seats" class="form-control" id="carSelect">
+                    @foreach (Car c in ViewData["UsersCars"] as List<Car>)
+                    {
+                        <option id="@c.id">@c.brand @c.model</option>
+                    }
                 </select>
             </div>
         </div>
@@ -114,6 +125,24 @@
 </form>
 
 
+<script src="~/lib/jquery/jquery.min.js"></script>
+<script>
+    $('#carSelect').on("change", function (event) {
+        console.log("carid: " +$('option:selected', this).attr('id'));
+
+        $.ajax({
+            url: "/Car/GetSeats",
+            type: "POST",
+            data: "id=" + $('option:selected', this).attr('id'),
+            success: function (response) {
+                $('#seats').html(response);
+
+            }
+        });
 
 
+    });
+
+
+</script>
 

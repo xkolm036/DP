@@ -17,14 +17,6 @@ namespace AutomationTest
             Assert.True(startDestDropdownContent.Count > 0);
             driver.FindElement(By.XPath("//h1")).Click();
 
-
-            //Koncové misto
-            IWebElement finalDestImput = wait.Until(ExpectedConditions.ElementIsVisible(By.Id("finalDestination")));
-            finalDestImput.SendKeys(finalDest);
-            var finalDestDropdownContent = wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.XPath("//div[@id='input-Destination-Content']//a")));
-            Assert.True(finalDestDropdownContent.Count > 0);
-            driver.FindElement(By.XPath("//h1")).Click();
-
             //datum
             IWebElement dateInput = wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("date")));
             dateInput.Click();
@@ -33,6 +25,12 @@ namespace AutomationTest
             dateInput.SendKeys(Keys.Delete);
             dateInput.SendKeys(date);
 
+            //Koncové misto
+            IWebElement finalDestImput = wait.Until(ExpectedConditions.ElementIsVisible(By.Id("finalDestination")));
+            finalDestImput.SendKeys(finalDest);
+            var finalDestDropdownContent = wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.XPath("//div[@id='input-Destination-Content']//a")));
+            Assert.True(finalDestDropdownContent.Count > 0);
+            driver.FindElement(By.XPath("//h1")).Click();
 
             //cas
             IWebElement timeInput = wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("time")));
@@ -41,10 +39,13 @@ namespace AutomationTest
             timeInput.SendKeys(Keys.Control + "a");
             timeInput.SendKeys(Keys.Delete);
             timeInput.SendKeys(Time);
+            driver.FindElement(By.XPath("//h1")).Click();
 
             //click submit
             IWebElement submintButton = wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//button[@id='submit']")));
             submintButton.Click();
+
+            wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.XPath("//h1[text()='Nalezené jízdy']")));
 
         }
 
@@ -73,7 +74,7 @@ namespace AutomationTest
         public void FindRoute()
         {
             //login user
-            Login();
+            Login("test@test.cz","test1234");
 
             //Find routes
             FindRoute("Kladno", "Praha", "9999/09/09", "12:24");

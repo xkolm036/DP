@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,7 +12,6 @@ namespace CarPool.Models
         [Key]
         public int id { get; set; }
         public AppUser AppUser { get; set; }
-
         public string color { get; set; }
         public string spz { get; set; }
         public int seats { get; set; }

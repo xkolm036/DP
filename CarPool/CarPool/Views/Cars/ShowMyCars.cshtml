@@ -1,8 +1,10 @@
-﻿<button class="btn btn btn-primary" id="add"> Přidat nové vozidlo </button>
+﻿
+
+<button class="btn btn btn-primary" id="add"> Přidat nové vozidlo </button>
 <h1 class="mt-2">Moje automobily</h1>
 <div id="content" class="d-flex p-3 flex-wrap">
-    <partial name="_PartialGenerateCards" />
 
+    <partial name="_PartialGenerateCards" />
 
 </div>
 
@@ -10,9 +12,12 @@
 
 <script src="~/lib/jquery/jquery.min.js"></script>
 <script>
-    $('a[title="EditButton"]').click(function () {
-        $(this).parent().find("input").removeAttr("readonly");
-        $(this).parent().find("textarea").removeAttr("readonly");
+
+
+    //edit button
+    $(document).on("click", '[title="EditButton"]', function (event) {
+        $(this).parent().find("*").removeAttr("readonly");
+        $(this).parent().find("input").removeClass("no-border");
 
         $(this).parent().find('a[title="EditButton"]').addClass("d-none");
         $(this).parent().find('a[title="DeleteButton"]').addClass("d-none");
@@ -21,33 +26,74 @@
         $(this).parent().find('a[title="SaveButton"]').removeClass("d-none");
     });
 
-    $('a[title="CancelButton"]').click(function () {
+    //cancel button
+    $(document).on("click", '[title="CancelButton"]', function (event) {
         $(this).parent().find("input").attr("readonly", "");
         $(this).parent().find("textarea").attr("readonly", "");
-
+        $(this).parent().find("input").addClass("no-border");
 
         $(this).parent().find('a[title="EditButton"]').removeClass("d-none");
         $(this).parent().find('a[title="DeleteButton"]').removeClass("d-none");
 
         $(this).parent().find('a[title="CancelButton"]').addClass("d-none");
         $(this).parent().find('a[title="SaveButton"]').addClass("d-none");
-
     });
 
-
-
-    $('button[id="add"]').click(function () {
-        alert("Now")
-        $.ajax({ //send request to find city/street
+    //edit car
+    $(document).on("click", '[title="SaveButton"]', function (event) {
+        var cardBody = $(this).parent()
+        console.log(cardBody.find("form").attr("id"));
+        $.ajax({
 
             url: "/Car/Add",
             type: "POST",
+            data: cardBody.find("form").serialize() + "&id=" + cardBody.find("form").attr("id"),
             success: function (response) {
-                $('#content').append(response); //fill dropdownItems view
 
             }
         });
+        console.log(cardBody.find("form").prop("tagName"));
+        cardBody.find("input").addClass("no-border");
+        cardBody.find("input").attr("readonly", "");
+        cardBody.find("textarea").attr("readonly", "");
+        cardBody.find("a").addClass("d-none");
+        cardBody.find('a[title="EditButton"]').removeClass("d-none");
+        cardBody.find('a[title="DeleteButton"]').removeClass("d-none");
     });
 
-</script>
+    //delete car
+    $(document).on("click", '[title="DeleteButton"]', function (event) {
+        var cardbody = $(this).parent().parent();
+        console.log(cardbody.find("form").attr("id"));
+        $.ajax({
 
+            url: "/Car/Delete",
+            type: "POST",
+            data: "id=" + cardbody.find("form").attr("id"),
+            success: function (response) {
+            }
+        });
+        cardbody.addClass("d-none");
+    });
+
+    //add new car
+    $(document).ready(function () {
+        $('button[id="add"]').click(function () {
+            $.ajax({
+                url: "/Car/AddEmpty",
+                type: "POST",
+                success: function (response) {
+                    var tmp = $(response);
+                    tmp.find("*").removeAttr("readonly");
+                    tmp.find("input").removeClass("no-border");
+                    $('#content').prepend(tmp);
+
+                }
+            });
+        });
+    });
+
+
+
+
+</script>

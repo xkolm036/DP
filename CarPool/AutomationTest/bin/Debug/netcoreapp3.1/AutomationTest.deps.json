@@ -11,6 +11,7 @@
           "DotNetSeleniumExtras.WaitHelpers": "3.11.0",
           "Microsoft.NET.Test.Sdk": "16.4.0",
           "NUnit3TestAdapter": "3.15.1",
+          "Selenium.Firefox.WebDriver": "0.26.0",
           "Selenium.WebDriver": "3.141.0",
           "NUnit": "3.12.0"
         },
@@ -407,6 +408,7 @@
           "Microsoft.NETCore.Targets": "1.1.0"
         }
       },
+      "Selenium.Firefox.WebDriver/0.26.0": {},
       "Selenium.WebDriver/3.141.0": {
         "dependencies": {
           "Newtonsoft.Json": "10.0.3"
@@ -984,6 +986,13 @@
       "sha512": "sha512-c/qWt2LieNZIj1jGnVNsE2Kl23Ya2aSTBuXMD6V7k9KWr6l16Tqdwq+hJScEpWER9753NWC8h96PaVNY5Ld7Jw==",
       "path": "runtime.native.system/4.3.0",
       "hashPath": "runtime.native.system.4.3.0.nupkg.sha512"
+    },
+    "Selenium.Firefox.WebDriver/0.26.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-l0N+Vw4/Y1kq/BX5JnRbgFSVkNC89EH3Vg/T1KlchO9MTOgGVdn2JGqNJWXZ7recxWu7WolCvUBPmzqnMQlSaQ==",
+      "path": "selenium.firefox.webdriver/0.26.0",
+      "hashPath": "selenium.firefox.webdriver.0.26.0.nupkg.sha512"
     },
     "Selenium.WebDriver/3.141.0": {
       "type": "package",

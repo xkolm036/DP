@@ -17,7 +17,18 @@ namespace AutomationTest
     {
         protected IWebDriver driver;
         protected WebDriverWait wait;
-        public string homeURL;
+
+        [SetUp]
+        public void SetupTest()
+        {
+      
+            driver = new FirefoxDriver();
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
+
+            driver.Manage().Window.Maximize();
+            driver.Navigate().GoToUrl("https://kolarikdp.azurewebsites.net/");
+            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("submit")));
+        }
 
         [TearDown]
         public void TearDownTest()
@@ -25,19 +36,8 @@ namespace AutomationTest
             driver.Close();
         }
 
-        [SetUp]
-        public void SetupTest()
-        {
-            homeURL = "https://kolarikdp.azurewebsites.net/";
-            driver = new FirefoxDriver("D:\\OneDrive\\Desktop\\CarPoll\\CarPool\\WebDriver");
-            wait = new WebDriverWait(driver, new TimeSpan(0, 0, 30));
-
-
-            driver.Navigate().GoToUrl(homeURL);
-            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("submit")));
-        }
         //login users and verify wrong inputs
-        public void Login()
+        public void Login(string email, string password)
         {
             wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//a[text()='Login']"))).Click();
             IWebElement loginButton = wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//button[text()='Přihlásit se']")));
@@ -55,8 +55,8 @@ namespace AutomationTest
             emailInput.SendKeys(Keys.Control + "a");
             emailInput.SendKeys(Keys.Delete);
 
-            emailInput.SendKeys("test@test.cz");
-            driver.FindElement(By.Id("Input_Password")).SendKeys("test1234");
+            emailInput.SendKeys(email);
+            driver.FindElement(By.Id("Input_Password")).SendKeys(password);
 
             wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//button[text()='Přihlásit se']"))).Click();
 

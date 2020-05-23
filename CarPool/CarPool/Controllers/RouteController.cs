@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CarPool.Controllers
 {
@@ -16,11 +17,13 @@ namespace CarPool.Controllers
     {
         private readonly UserManager<AppUser> userManager;
         private readonly SignInManager<AppUser> signInManager;
+        private readonly ApplicationDbContext _db;
 
-        public RouteController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        public RouteController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,ApplicationDbContext db)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            this._db = db;
         }
 
 
@@ -114,7 +117,14 @@ namespace CarPool.Controllers
         [Authorize]
         public IActionResult CreateRouteForm()
         {
+
+            ViewData["UsersCars"] = _db.cars.Where(c=>c.AppUser.Id==userManager.GetUserId(User)).ToList();
             ViewData["Message"] = "Your application description page.";
+
+            if ((ViewData["UsersCars"] as List<Car>).Count==0 )
+            {
+                TempData["msg-error"] = "Nejprve si musite v sekci moje vozidla pridat automobil";
+            }
 
             return View();
         }

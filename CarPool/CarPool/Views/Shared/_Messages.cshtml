@@ -1,0 +1,62 @@
+﻿
+
+
+<div id="message" class="container">
+
+    @if (TempData["msg-success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            @TempData["msg-success"]
+        </div>
+    }
+    @if (TempData["msg-info"] != null)
+    {
+        <div class="alert alert-info alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            @TempData["msg-info"]
+        </div>
+    }
+    @if (TempData["msg-warning"] != null)
+    {
+        <div class="alert alert-warning  alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            @TempData["msg-warning"]
+        </div>
+    }
+    @if (TempData["msg-error"] != null)
+    {
+        <div class="alert alert-danger  alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            @TempData["msg-error"]
+        </div>
+    }
+    @if (TempData["msg-primary"] != null)
+    {
+        <div class="alert alert-primary alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            @TempData["msg-primary"]
+        </div>
+    }
+    @if (TempData["msg-secondary"] != null)
+    {
+        <div class="alert alert-secondary alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            @TempData["msg-secondary"]
+        </div>
+    }
+    @if (TempData["msg-dark"] != null)
+    {
+        <div class="alert alert-dark alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            @TempData["msg-dark"]
+        </div>
+    }
+    @if (TempData["msg-light"] != null)
+    {
+        <div class="alert alert-light alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            @TempData["msg-light"]
+        </div>
+    }
+</div>

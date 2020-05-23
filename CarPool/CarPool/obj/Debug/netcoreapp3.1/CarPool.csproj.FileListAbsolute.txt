@@ -190,3 +190,5 @@ D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\bin\Debug\netcoreapp3.1\Microsoft.Do
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\bin\Debug\netcoreapp3.1\System.Xml.XPath.XmlDocument.dll
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\CarPool.MvcApplicationPartsAssemblyInfo.cs
 D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\CarPool.MvcApplicationPartsAssemblyInfo.cache
+D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Messages.cshtml.g.cs
+D:\OneDrive\Desktop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\Razor\Views\Cars\_seatsSelect.cshtml.g.cs
