@@ -8205,25 +8205,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\marty\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Martin Kolarik\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\OneDrive\\Desktop\\CarPoll\\CarPool\\CarPool\\CarPool.csproj",
+      "projectUniqueName": "C:\\Develop\\CarPoll\\CarPool\\CarPool\\CarPool.csproj",
       "projectName": "CarPool",
-      "projectPath": "D:\\OneDrive\\Desktop\\CarPoll\\CarPool\\CarPool\\CarPool.csproj",
-      "packagesPath": "C:\\Users\\marty\\.nuget\\packages\\",
-      "outputPath": "D:\\OneDrive\\Desktop\\CarPoll\\CarPool\\CarPool\\obj\\",
+      "projectPath": "C:\\Develop\\CarPoll\\CarPool\\CarPool\\CarPool.csproj",
+      "packagesPath": "C:\\Users\\Martin Kolarik\\.nuget\\packages\\",
+      "outputPath": "C:\\Develop\\CarPoll\\CarPool\\CarPool\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\marty\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Martin Kolarik\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -8321,6 +8319,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[3.1.2, 3.1.2]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -8329,7 +8333,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
       }
     }
   }

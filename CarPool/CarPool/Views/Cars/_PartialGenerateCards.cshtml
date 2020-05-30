@@ -1,53 +1,59 @@
-﻿@foreach (Car c in (List<Car>)ViewData["Cars"])
+﻿
+@foreach (Car c in ViewData["Cars"] as List<Car>)
 {
-    <div class="card ml-md-2 mb-2"  style="width:320px" >
-       <img class="card-img-top" src="img_avatar1.png" alt="Card image" style="width:100%">
-       <div class="card-body">
-           <form id="@c.id">
-               <div class="row">
-                   <div class="col-5"><label>Výrobce:</label></div>
-                   <div class="col-7"><label> <input class="form-control bg-light no-border" type="text" name="brand" value="@c.brand" readonly=""></label></div>
-               </div>
+    <div class="card ml-md-2 mb-2" >
+        <div id="dragArea" class="d-none" >
+           
+            <p class="dragText"> Presunutím vlož obrázek</p>
+        </div>
 
-               <div class="row">
-                   <div class="col-5"><label>Model:</label></div>
-                   <div class="col-7"><label> <input class="form-control bg-light no-border" type="text" name="model" value="@c.model" readonly=""></label></div>
-               </div>
+        <img src="~/images/image_@(c.id).jpg" class="dragImage" />
+        <div class="card-body">
+            <form id="@c.id">
+                <div class="row">
+                    <div class="col-4"><label>Výrobce:</label></div>
+                    <div class="col-7"><label> <input class="form-control bg-light no-border" type="text" name="brand" value="@c.brand" readonly=""></label></div>
+                </div>
 
-               <div class="row">
-                   <div class="col-5"><label>Počet míst:</label></div>
-                   <div class="col-7"><label> <input class="form-control bg-light no-border" type="text" name="seats" value="@c.seats" readonly=""></label></div>
-               </div>
+                <div class="row">
+                    <div class="col-4"><label>Model:</label></div>
+                    <div class="col-7"><label> <input class="form-control bg-light no-border" type="text" name="model" value="@c.model" readonly=""></label></div>
+                </div>
 
-               <div class="row">
-                   <div class="col-5"><label>Barva: </label></div>
-                   <div class="col-7"><label> <input class="form-control bg-light no-border" type="text" name="color" value="@c.color" readonly=""></label></div>
-               </div>
+                <div class="row">
+                    <div class="col-4"><label>Počet míst:</label></div>
+                    <div class="col-7"><label> <input class="form-control bg-light no-border" type="text" name="seats" value="@c.seats" readonly=""></label></div>
+                </div>
 
-               <div class="row">
-                   <div class="col-5"><label>SPZ: </label></div>
-                   <div class="col-7"><label> <input class="no-border form-control bg-light" type="text" name="spz" value="@c.spz" readonly=""></label></div>
-               </div>
-               <label>Popis:</label><br />
-               <textarea class="form-control bg-light" name="description" readonly>@c.description</textarea>
-           </form>
-           <br />   <br />
+                <div class="row">
+                    <div class="col-4"><label>Barva: </label></div>
+                    <div class="col-7"><label> <input class="form-control bg-light no-border" type="text" name="color" value="@c.color" readonly=""></label></div>
+                </div>
 
-           @if (c.AppUser==null)
-           {
-           <a href="#" class="btn btn-primary" title="SaveButton">Save</a>
-           <a href="#" class="btn btn-primary" title="DeleteButton">Delete</a>
-           <a href="#" class="btn btn-primary d-none" title="EditButton">Edit</a>
-           <a href="#" class="btn btn-primary d-none" title="CancelButton">Cancel</a>
+                <div class="row">
+                    <div class="col-4"><label>SPZ: </label></div>
+                    <div class="col-7"><label> <input class="no-border form-control bg-light" type="text" name="spz" value="@c.spz" readonly=""></label></div>
+                </div>
+                <label>Popis:</label><br />
+                <textarea class="form-control bg-light mr-0" name="description" readonly>@c.description</textarea>
+            </form>
+            <br />   <br />
 
-           }
-           else
-           {
-           <a href="#" class="btn btn-primary" title="EditButton">Edit</a>
-           <a href="#" class="btn btn-primary d-none" title="CancelButton">Cancel</a>
-           <a href="#" class="btn btn-primary d-none" title="SaveButton">Save</a>
-           <a href="#" class="btn btn-primary" title="DeleteButton">Delete</a>
-           }
-       </div>
+            @if (c.AppUser == null)
+            {
+                <a href="#" class="btn btn-primary" title="SaveButton">Save</a>
+                <a href="#" class="btn btn-primary d-none" title="EditButton">Edit</a>
+                <a href="#" class="btn btn-primary" title="DeleteButton">Delete</a>
+                <a href="#" class="btn btn-primary d-none" title="CancelButton">Cancel</a>
+
+            }
+            else
+            {
+                <a href="#" class="btn btn-primary" title="EditButton">Edit</a>
+                <a href="#" class="btn btn-primary d-none" title="CancelButton">Cancel</a>
+                <a href="#" class="btn btn-primary d-none" title="SaveButton">Save</a>
+                <a href="#" class="btn btn-primary" title="DeleteButton">Delete</a>
+            }
+        </div>
     </div>
 }

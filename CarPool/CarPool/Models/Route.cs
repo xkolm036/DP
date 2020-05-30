@@ -15,6 +15,11 @@ namespace CarPool.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
 
+        public AppUser CreatedBy { get; set; }
+
+        public IList<RouteUser> RouteUser { get; set; }
+
+
         [Column("startdestination")]
         [Required(ErrorMessage ="Zadej misto odkud chces jet")]
         public string startDestination { get; set; }
@@ -38,9 +43,9 @@ namespace CarPool.Models
         [Column("price")]
         public double price { get; set; }
 
-        [Column("CreatedBy")]
+       /* [Column("CreatedBy")]
         public string createdBy { get; set; }
-
+        */
         [NotMapped]
         public virtual bool? connected { get; set; } = false;
 

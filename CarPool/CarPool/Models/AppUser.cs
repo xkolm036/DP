@@ -12,7 +12,7 @@ namespace CarPool.Models
         public int nuberOfCreatedRoutes { get; set; }
         public int nuberOfLoggedRoutes { get; set; }
 
-        public ICollection<Car> Cars { get; set; }
+        public IList<RouteUser> RouteUser { get; set; }
 
     }
 }

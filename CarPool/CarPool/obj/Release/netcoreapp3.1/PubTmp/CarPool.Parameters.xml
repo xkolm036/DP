@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
   <parameter name="IIS Web Application Name" description="" value="KolarikDp" tags="IisApp">
-    <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\OneDrive\\Desktop\\CarPoll\\CarPool\\CarPool\\obj\\Release\\netcoreapp3\.1\\PubTmp\\Out\\$" />
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Develop\\CarPoll\\CarPool\\CarPool\\obj\\Release\\netcoreapp3\.1\\PubTmp\\Out\\$" />
   </parameter>
 </parameters>

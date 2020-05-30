@@ -4,9 +4,13 @@ using System.Linq;
 using CarPool.Data;
 using CarPool.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting.Internal;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace CarPool.Controllers
 {
@@ -14,19 +18,47 @@ namespace CarPool.Controllers
     {
         private readonly ApplicationDbContext _db;
         private readonly UserManager<AppUser> _userManager;
+        private readonly IWebHostEnvironment _env;
 
-        public CarsController(ApplicationDbContext db, UserManager<AppUser> userManager)
+        public CarsController(ApplicationDbContext db, UserManager<AppUser> userManager, IWebHostEnvironment env)
         {
             _db = db;
             this._userManager = userManager;
+            _env = env;
         }
 
         public List<Car> findMyCars()
         {
             List<Car> carsFromDb = new List<Car>();
-            carsFromDb = _db.cars.Where(c=>c.AppUser.Id==_userManager.GetUserId(User)).ToList();
+            // carsFromDb = _db.cars.Where(c=>c.AppUser.Id==_userManager.GetUserId(User)).ToList();
+            carsFromDb = _db.cars.Include(x => x.AppUser).Where(c => c.AppUser.Id == _userManager.GetUserId(User)).ToList();
             return carsFromDb;
 
+        }
+
+        [Route("/Car/UploadImage")]
+        public void UploadImage(IFormFile file, int id)
+        {
+            Car c = new Car();
+            c = _db.cars.Where(c => c.AppUser.Id == _userManager.GetUserId(User) && c.id == id).FirstOrDefault();
+
+            if (c != null)
+            {
+                if (file.ContentType == "image/png" || file.ContentType == "image/jpeg")
+                {
+                    string filePath = Path.Combine(_env.WebRootPath, "images");
+                    string pripona = file.FileName.Split(".")[1];
+                    string filepath= Path.Combine(filePath,"image_"+c.id.ToString()+".jpg");
+
+                    file.CopyTo(new FileStream(filePath,FileMode.Create));
+
+
+                   
+                }
+
+        
+            }
+        
         }
 
         [Route("/Car/My")]
@@ -88,7 +120,6 @@ namespace CarPool.Controllers
             Car carFromDb = new Car();
             carFromDb = _db.cars.Where(c => c.id == newCar.id && c.AppUser.Id==_userManager.GetUserId(User)).FirstOrDefault();
 
-
             //modify existing car
             if (carFromDb != null)
             {
@@ -106,10 +137,12 @@ namespace CarPool.Controllers
                 newCar.AppUser = _db.Users.Where(u => u.Id == _userManager.GetUserId(User)).FirstOrDefault();
                 _db.cars.Add(newCar);
                 _db.SaveChanges();
-
+                ViewData["Cars"] = newCar;
+                
+ 
             }
 
-            return PartialView("_PartialGenerateCards");
+            return Content(newCar.id.ToString());
         }
 
 
