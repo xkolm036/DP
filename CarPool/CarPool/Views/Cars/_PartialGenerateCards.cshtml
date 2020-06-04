@@ -1,15 +1,26 @@
 ﻿
+
+
 @foreach (Car c in ViewData["Cars"] as List<Car>)
 {
-    <div class="card ml-md-2 mb-2" >
-        <div id="dragArea" class="d-none" >
-           
-            <p class="dragText"> Presunutím vlož obrázek</p>
+    <div class="card ml-md-2 mb-2" id="card">
+        <div id="dragArea" class="d-none">
+            <p class="fileText" id="fileText"> </p>
+            <p class="dragText"> Presunutím vlož obrázek <br> Nebo klikni pro výběr</p>
+
         </div>
 
         <img src="~/images/image_@(c.id).jpg" class="dragImage" />
-        <div class="card-body">
-            <form id="@c.id">
+        <div class="card-body" id="card-body">
+            <form >
+
+                <input name="id" value="@c.id" class="d-none"/>
+
+                <div class="row d-none">
+                    <div class="col-4"><label>Obrazek:</label></div>
+                    <div class="col-7"><label> <input class="form-control bg-light no-border" type="file" name="file" id="fileInput" accept="image/*" readonly=""></label></div>
+                </div>
+
                 <div class="row">
                     <div class="col-4"><label>Výrobce:</label></div>
                     <div class="col-7"><label> <input class="form-control bg-light no-border" type="text" name="brand" value="@c.brand" readonly=""></label></div>
@@ -36,24 +47,25 @@
                 </div>
                 <label>Popis:</label><br />
                 <textarea class="form-control bg-light mr-0" name="description" readonly>@c.description</textarea>
+
+                <br />   <br />
+
+                @if (c.AppUser == null)
+                {
+                    <button type="button" class="btn btn-primary" title="SaveButton">Save</button>
+                    <button type="button" class="btn btn-primary d-none" title="EditButton">Edit</button>
+                    <button type="button" class="btn btn-primary" title="DeleteButton">Delete</button>
+                    <button type="button" class="btn btn-primary d-none" title="CancelButton">Cancel</button>
+
+                }
+                else
+                {
+                    <button type="button" class="btn btn-primary" title="EditButton">Edit</button>
+                    <button type="button" class="btn btn-primary d-none" title="CancelButton">Cancel</button>
+                    <button type="button" class="btn btn-primary d-none" title="SaveButton">Save </button>
+                    <button type="button" class="btn btn-primary" title="DeleteButton">Delete</button>
+                }
             </form>
-            <br />   <br />
-
-            @if (c.AppUser == null)
-            {
-                <a href="#" class="btn btn-primary" title="SaveButton">Save</a>
-                <a href="#" class="btn btn-primary d-none" title="EditButton">Edit</a>
-                <a href="#" class="btn btn-primary" title="DeleteButton">Delete</a>
-                <a href="#" class="btn btn-primary d-none" title="CancelButton">Cancel</a>
-
-            }
-            else
-            {
-                <a href="#" class="btn btn-primary" title="EditButton">Edit</a>
-                <a href="#" class="btn btn-primary d-none" title="CancelButton">Cancel</a>
-                <a href="#" class="btn btn-primary d-none" title="SaveButton">Save</a>
-                <a href="#" class="btn btn-primary" title="DeleteButton">Delete</a>
-            }
         </div>
     </div>
 }

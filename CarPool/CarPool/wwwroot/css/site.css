@@ -45,7 +45,7 @@ h1{
 }
 
 .dragImage{
-    width:100%;
+    width:335px;
     height:250px;
 
 }
@@ -64,4 +64,11 @@ h1{
 
 .card-body .row {
     margin-right: -50px;
+}
+
+.fileText {
+    position: absolute;
+    bottom: -15px;
+    left: 16px;
+    color:#000;
 }

@@ -11,6 +11,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting.Internal;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using ImageMagick;
+
 
 namespace CarPool.Controllers
 {
@@ -37,28 +39,49 @@ namespace CarPool.Controllers
         }
 
         [Route("/Car/UploadImage")]
-        public void UploadImage(IFormFile file, int id)
+        public IActionResult UploadImage(IFormFile file, int id)
         {
+           
+
+
             Car c = new Car();
             c = _db.cars.Where(c => c.AppUser.Id == _userManager.GetUserId(User) && c.id == id).FirstOrDefault();
 
-            if (c != null)
-            {
                 if (file.ContentType == "image/png" || file.ContentType == "image/jpeg")
                 {
-                    string filePath = Path.Combine(_env.WebRootPath, "images");
-                    string pripona = file.FileName.Split(".")[1];
-                    string filepath= Path.Combine(filePath,"image_"+c.id.ToString()+".jpg");
+                    if (file.Length > 20971520)  //20 Mb
+                    {
+                        TempData["msg-error"] = "Obrazek nesmi být větší než 20 MB";
+                    }
+                    else
+                    {
+
+                    var filePath = Path.GetTempFileName();
+
+                    //  string filePath = Path.Combine(_env.WebRootPath, "Temp");
+                    //  string pripona = file.FileName.Split(".")[1];
+                    //  string filepath = Path.Combine(filePath, "image_" + c.id.ToString() + ".jpg");
+
+
+                    //   var optimizer = new ImageOptimizer();
+                    //   optimizer.LosslessCompress(image);
+                    //   image.CopyTo(filepath);
 
                     file.CopyTo(new FileStream(filePath,FileMode.Create));
+                    return Content(filePath);
 
-
-                   
                 }
 
-        
-            }
-        
+
+
+                }
+                else
+                {
+                    TempData["msg-error"] = "Je povolen pouze format png a jpg";
+                }
+
+            
+            return Content("OK");
         }
 
         [Route("/Car/My")]
@@ -114,7 +137,7 @@ namespace CarPool.Controllers
 
         [Route("/Car/Add")]
         [HttpPost]
-        public IActionResult AddCar(Car newCar)
+        public IActionResult AddCar(Car newCar, IFormFile file)
         {
             //try to find in db
             Car carFromDb = new Car();
@@ -138,8 +161,38 @@ namespace CarPool.Controllers
                 _db.cars.Add(newCar);
                 _db.SaveChanges();
                 ViewData["Cars"] = newCar;
-                
- 
+            }
+
+            if (file.ContentType == "image/png" || file.ContentType == "image/jpeg")
+            {
+                if (file.Length > 20971520)  //20 Mb
+                {
+                    TempData["msg-error"] = "Obrazek nesmi být větší než 20 MB";
+                }
+                else
+                {
+
+                   string filePath = Path.Combine(_env.WebRootPath, "images");
+                   string pripona = file.FileName.Split(".")[1];
+                   string filepath = Path.Combine(filePath, "image_" + newCar.id + "."+pripona);
+
+
+                    //   var optimizer = new ImageOptimizer();
+                    //   optimizer.LosslessCompress(image);
+                    //   image.CopyTo(filepath);
+
+                    file.CopyTo(new FileStream(filepath, FileMode.Create));
+
+              
+
+                }
+
+
+
+            }
+            else
+            {
+                TempData["msg-error"] = "Je povolen pouze format png a jpg";
             }
 
             return Content(newCar.id.ToString());

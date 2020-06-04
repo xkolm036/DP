@@ -15,21 +15,41 @@
 
 <script src="~/lib/jquery/jquery.min.js"></script>
 <script>
+    //click on text
+    //cancel button
+    $(document).on("click", '#dragArea', function (event) {
+        console.log("Drag area click");
+
+        var fileInput = $(this).closest("#card").find("#fileInput");
+        fileInput.click();
+    });
+
+    //po vyberu souboru vlozim do p text
+    $(document).on("change", '#fileInput', function (event) {
+        console.log("input change");
+
+        var file = new DataTransfer();
+        file.items.add($(this).prop("files")[0]);
+        $(this).closest("#card").find("#fileText").text(file.files[0].name);
+    });
+
 
 
     //edit button
     $(document).on("click", '[title="EditButton"]', function (event) {
+        console.log("edit click");
 
-        var topElement = $(this).parent().parent();
+
+        var topElement = $(this).closest("#card");
 
         topElement.find("*").removeAttr("readonly");
         topElement.find("input").removeClass("no-border");
 
-        topElement.find('a[title="EditButton"]').addClass("d-none");
-        topElement.find('a[title="DeleteButton"]').addClass("d-none");
+        topElement.find('[title="EditButton"]').addClass("d-none");
+        topElement.find('[title="DeleteButton"]').addClass("d-none");
 
-        topElement.find('a[title="CancelButton"]').removeClass("d-none");
-        topElement.find('a[title="SaveButton"]').removeClass("d-none");
+        topElement.find('[title="CancelButton"]').removeClass("d-none");
+        topElement.find('[title="SaveButton"]').removeClass("d-none");
 
         topElement.find("#dragArea").addClass("dragArea");
         topElement.find("#dragArea").removeClass("d-none");
@@ -40,71 +60,87 @@
         topElement.find(".dragImage").detach().appendTo(topElement.find("#dragArea"));
     });
 
-    //cancel button
-    $(document).on("click", '[title="CancelButton"]', function (event) {
-        var topElement = $(this).parent().parent();
 
+
+    //cancel button
+    $(document).on("click", '[title="CancelButton"]', function () {
+        console.log("Cancel click");
+
+        var topElement = $(this).closest("#card");
         topElement.find("input").attr("readonly", "");
         topElement.find("textarea").attr("readonly", "");
         topElement.find("input").addClass("no-border");
 
-        topElement.find('a[title="EditButton"]').removeClass("d-none");
-        topElement.find('a[title="DeleteButton"]').removeClass("d-none");
+        topElement.find('[title="EditButton"]').removeClass("d-none");
+        topElement.find('[title="DeleteButton"]').removeClass("d-none");
 
-        topElement.find('a[title="CancelButton"]').addClass("d-none");
-        topElement.find('a[title="SaveButton"]').addClass("d-none");
+        topElement.find('[title="CancelButton"]').addClass("d-none");
+        topElement.find('[title="SaveButton"]').addClass("d-none");
 
         topElement.find("#dragArea").addClass("d-none");
         topElement.find(".dragImage").removeClass("dragImageEdit");
 
         topElement.find(".dragImage").detach().prependTo(topElement);
 
-
-
-
     });
 
-    //edit/save car
-    $(document).on("click", '[title="SaveButton"]', function (event) {
-        var cardBody = $(this).parent();
-        $.ajax({
-            url: "/Car/Add",
-            type: "POST",
-            dataType: "text",
-            data: cardBody.find("form").serialize() + "&id=" + cardBody.find("form").attr("id"),
-            success: function (response) {
-                //add generate id and add it to form attr id
-                cardBody.find("form").attr("id", response);
-            },
-            error: function () {
-                console.log("Error occured while save car");
+    //save car
+    $(document).on("click", '[title="SaveButton"]', function () {
+        console.log("Save click");
+        var topElement = $(this).closest("#card");
+        var form = $(this).closest("#card-body").find("form");
+        console.log(form);
+
+        var formData = new FormData();
+        console.log(form.find("input[name=brand]").val());
+        formData.append("id", form.find("input[name=id]").val());
+        formData.append("brand", form.find("input[name=brand]").val());
+        formData.append("model", form.find("input[name=model]").val());
+        formData.append("seats", form.find("input[name=seats]").val());
+        formData.append("color", form.find("input[name=color]").val());
+        formData.append("spz", form.find("input[name=spz]").val());
+        formData.append("file", form.find("#fileInput").prop("files")[0]);
+        
+
+     
+
+        var request = new XMLHttpRequest();
+        request.open("POST", "/Car/Add");
+        request.send(formData);
+ 
+
+        request.onload = function () {
+            if (request.status == 200) {
+                form.find("intput[title=id]").attr("value", request.responseText);
+                form.find("input").addClass("no-border");
+                form.find("input").attr("readonly", "");
+                form.find("textarea").attr("readonly", "");
+                form.find("button").addClass("d-none");
+                form.find('[title="EditButton"]').removeClass("d-none");
+                form.find('[title="DeleteButton"]').removeClass("d-none");
+                topElement.find("#dragArea").addClass("d-none");
+                topElement.find(".dragImage").removeClass("dragImageEdit");
+                topElement.find(".dragImage").detach().prependTo(topElement);
             }
-        });
+        };
 
-        cardBody.find("input").addClass("no-border");
-        cardBody.find("input").attr("readonly", "");
-        cardBody.find("textarea").attr("readonly", "");
-        cardBody.find("a").addClass("d-none");
-        cardBody.find('a[title="EditButton"]').removeClass("d-none");
-        cardBody.find('a[title="DeleteButton"]').removeClass("d-none");
 
-        cardBody.parent().find("#dragArea").addClass("d-none");
-        cardBody.parent().find(".dragImage").removeClass("dragImageEdit");
-        cardBody.parent().find(".dragImage").detach().prependTo(cardBody.parent());
+
 
     });
 
     //delete car
     $(document).on("click", '[title="DeleteButton"]', function (event) {
-        var cardbody = $(this).parent().parent();
-        console.log(cardbody.find("form").attr("id"));
-        $.ajax({
+        console.log("Delete click");
 
+        var cardbody = $(this).closest("#card");
+        $.ajax({
             url: "/Car/Delete",
             type: "POST",
-            data: "id=" + cardbody.find("form").attr("id"),
+            data: "id=" + cardbody.find("form").find('input[name="id"]').attr("value"),
             success: function (response) {
-                cardbody.addClass("d-none");
+                //cardbody.addClass("d-none");
+                cardbody.remove();
             }
         });
 
@@ -113,6 +149,8 @@
     //add new car
     $(document).ready(function () {
         $('button[id="add"]').click(function () {
+            console.log("New car click");
+
             $.ajax({
                 url: "/Car/AddEmpty",
                 type: "POST",
@@ -131,10 +169,6 @@
 
                 }
             });
-
-
-
-
         });
     });
 
@@ -142,39 +176,32 @@
 
     $(document).ready(function () {
 
-      //  if (dragArea != null) {
+        //  if (dragArea != null) {
 
-            $(document).on("dragover","#dragArea", function () {
-                this.className = "dragArea dragOver";
+        $(document).on("dragover dragenter", "#dragArea", function (e) {
+            e.preventDefault();
+            this.className = "dragArea dragOver";
 
-            });
-                
-
-         
+        });
 
 
-            var upload = function (file) {
-                var formData = new FormData();
-                formData.append("file", file);
-                formData.append("id", document.getElementsByTagName("FORM")[1].getAttribute("id"));
-                const Http = new XMLHttpRequest();
-                const url = "/car/UploadImage";
-                Http.open("post", url);
-                Http.send(formData);
-            };
 
+        $(document).on("drop", "#dragArea", function (event) {
+            console.log("Drop");
 
-            $(document).on("drop", "#dragArea", function (e) {
-                e.preventDefault();
-                this.className = "dragArea";
-                upload(e.dataTransfer.files[0]);
-            });
+            event.preventDefault();
+            this.className = "dragArea";
+            var id = $(this).parent().find("form");
+            $(this).parent().find("#fileInput").prop('files', event.originalEvent.dataTransfer.files);
+            $(this).find(".fileText").text(event.originalEvent.dataTransfer.files[0].name)
+        });
 
-            $(document).on("dragleave", "#dragArea", function () {
+        $(document).on("dragleave", "#dragArea", function () {
 
-                this.className = "dragArea";
-            });
-    //    };
+            this.className = "dragArea";
+
+        });
+        //    };
 
     });
 </script>

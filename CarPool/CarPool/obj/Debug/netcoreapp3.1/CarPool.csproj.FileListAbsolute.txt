@@ -337,9 +337,6 @@ C:\Develop\CarPoll\CarPool\CarPool\bin\Debug\netcoreapp3.1\runtimes\win\lib\nets
 C:\Develop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\CarPool.csprojAssemblyReference.cache
 C:\Develop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\CarPool.AssemblyInfoInputs.cache
 C:\Develop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\CarPool.AssemblyInfo.cs
-C:\Develop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\CarPool.csproj.CoreCompileInputs.cache
-C:\Develop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\CarPool.MvcApplicationPartsAssemblyInfo.cs
-C:\Develop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\CarPool.MvcApplicationPartsAssemblyInfo.cache
 C:\Develop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\CarPool.RazorAssemblyInfo.cache
 C:\Develop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\CarPool.RazorAssemblyInfo.cs
 C:\Develop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\CarPool.TagHelpers.input.cache
@@ -383,3 +380,11 @@ C:\Develop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\staticwebassets\CarPo
 C:\Develop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\CarPool.dll
 C:\Develop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\CarPool.pdb
 C:\Develop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\CarPool.genruntimeconfig.cache
+C:\Develop\CarPoll\CarPool\CarPool\bin\Debug\netcoreapp3.1\Magick.NET-Q16-AnyCPU.dll
+C:\Develop\CarPoll\CarPool\CarPool\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\Magick.Native-Q16-x64.dll.so
+C:\Develop\CarPoll\CarPool\CarPool\bin\Debug\netcoreapp3.1\runtimes\osx-x64\native\Magick.Native-Q16-x64.dll.dylib
+C:\Develop\CarPoll\CarPool\CarPool\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\Magick.Native-Q16-x64.dll
+C:\Develop\CarPoll\CarPool\CarPool\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\Magick.Native-Q16-x86.dll
+C:\Develop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\CarPool.csproj.CoreCompileInputs.cache
+C:\Develop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\CarPool.MvcApplicationPartsAssemblyInfo.cs
+C:\Develop\CarPoll\CarPool\CarPool\obj\Debug\netcoreapp3.1\CarPool.MvcApplicationPartsAssemblyInfo.cache
