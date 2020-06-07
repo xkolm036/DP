@@ -12,9 +12,9 @@
 
         <img src="~/images/image_@(c.id).jpg" class="dragImage" />
         <div class="card-body" id="card-body">
-            <form >
+            <form>
 
-                <input name="id" value="@c.id" class="d-none"/>
+                <input name="id" value="@c.id" class="d-none" />
 
                 <div class="row d-none">
                     <div class="col-4"><label>Obrazek:</label></div>
@@ -22,28 +22,47 @@
                 </div>
 
                 <div class="row">
+                    <div class="col-11 text-danger mt-0 small"><p>@TempData["brand-error"]</p> </div>
+                </div>
+                <div class="row">
                     <div class="col-4"><label>Výrobce:</label></div>
                     <div class="col-7"><label> <input class="form-control bg-light no-border" type="text" name="brand" value="@c.brand" readonly=""></label></div>
                 </div>
 
+                <div class="row">
+                    <div class="col-11 text-danger mt-0 small"><p>@TempData["model-error"]</p> </div>
+                </div>
                 <div class="row">
                     <div class="col-4"><label>Model:</label></div>
                     <div class="col-7"><label> <input class="form-control bg-light no-border" type="text" name="model" value="@c.model" readonly=""></label></div>
                 </div>
 
                 <div class="row">
+                    <div class="col-11 text-danger mt-0 small"><p>@TempData["seats-error"]</p> </div>
+                </div>
+                <div class="row">
                     <div class="col-4"><label>Počet míst:</label></div>
                     <div class="col-7"><label> <input class="form-control bg-light no-border" type="text" name="seats" value="@c.seats" readonly=""></label></div>
                 </div>
 
+                <div class="row">
+                    <div class="col-11 text-danger mt-0 small"><p>@TempData["color-error"]</p> </div>
+                </div>
                 <div class="row">
                     <div class="col-4"><label>Barva: </label></div>
                     <div class="col-7"><label> <input class="form-control bg-light no-border" type="text" name="color" value="@c.color" readonly=""></label></div>
                 </div>
 
                 <div class="row">
+                    <div class="col-11 text-danger mt-0 small"><p>@TempData["spz-error"]</p> </div>
+                </div>
+                <div class="row">
                     <div class="col-4"><label>SPZ: </label></div>
                     <div class="col-7"><label> <input class="no-border form-control bg-light" type="text" name="spz" value="@c.spz" readonly=""></label></div>
+                </div>
+             
+                <div class="row">
+                    <div class="col-11 text-danger mt-0 small"><p>@TempData["description-error"]</p> </div>
                 </div>
                 <label>Popis:</label><br />
                 <textarea class="form-control bg-light mr-0" name="description" readonly>@c.description</textarea>

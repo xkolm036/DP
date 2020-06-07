@@ -383,3 +383,8 @@ C:\Develop\CarPoll\CarPool\CarPool\obj\Release\netcoreapp3.1\staticwebassets\Car
 C:\Develop\CarPoll\CarPool\CarPool\obj\Release\netcoreapp3.1\CarPool.dll
 C:\Develop\CarPoll\CarPool\CarPool\obj\Release\netcoreapp3.1\CarPool.pdb
 C:\Develop\CarPoll\CarPool\CarPool\obj\Release\netcoreapp3.1\CarPool.genruntimeconfig.cache
+C:\Develop\CarPoll\CarPool\CarPool\bin\Release\netcoreapp3.1\Magick.NET-Q16-AnyCPU.dll
+C:\Develop\CarPoll\CarPool\CarPool\bin\Release\netcoreapp3.1\runtimes\linux-x64\native\Magick.Native-Q16-x64.dll.so
+C:\Develop\CarPoll\CarPool\CarPool\bin\Release\netcoreapp3.1\runtimes\osx-x64\native\Magick.Native-Q16-x64.dll.dylib
+C:\Develop\CarPoll\CarPool\CarPool\bin\Release\netcoreapp3.1\runtimes\win-x64\native\Magick.Native-Q16-x64.dll
+C:\Develop\CarPoll\CarPool\CarPool\bin\Release\netcoreapp3.1\runtimes\win-x86\native\Magick.Native-Q16-x86.dll

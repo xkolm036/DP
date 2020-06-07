@@ -1,8 +1,16 @@
 ﻿@using CarPool.Models;
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+
 
 <h1>@ViewData["Title"]</h1>
+@{
 
-@if (TempData.Count == 0)
+    Microsoft.AspNetCore.Http.QueryString urlParam = Context.Request.QueryString;
+    Microsoft.AspNetCore.Http.PathString path = Context.Request.Path;
+}
+
+@if (ViewData["Routes"] != null)
 {
     <table class="table table-hover">
         <thead>
@@ -23,28 +31,37 @@
 
             @foreach (Route routeFromDb in (List<Route>)ViewData["Routes"])
             {
-            <tr>
-                <td>@routeFromDb.date.ToString("dd.MM.yyyy")</td>
-                <td>@routeFromDb.date.ToString("HH:mm")</td>
-                <td>@routeFromDb.startDestination</td>
-                <td>@routeFromDb.finalDestination</td>
-                <td>@routeFromDb.seats</td>
-                <td>@routeFromDb.price</td>
-                <td><a href="/Route/ShowDetail?id=@routeFromDb.id">Detail</a></td>
+                <tr>
+                    <td>@routeFromDb.date.ToString("dd.MM.yyyy")</td>
+                    <td>@routeFromDb.date.ToString("HH:mm")</td>
+                    <td>@routeFromDb.startDestination</td>
+                    <td>@routeFromDb.finalDestination</td>
+                    <td id="freePlaces"><span>@routeFromDb.seats</span></td>
+                    <td>@routeFromDb.price</td>
+                    <td><a href="/Route/ShowDetail?id=@routeFromDb.id">Detail</a></td>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        @if (routeFromDb.connected == false)
+                        {
+                            <td><a href="#" id="@routeFromDb.id" title="join">Připojit se</a></td>
+                        }
+                        else if (routeFromDb.connected == true)
+                        {
+                            <td><a href="#" id="@routeFromDb.id" title="leave">Odhlásit se</a></td>
+                        }
+                        else
+                        {
+                            <td><a href="#" id="@routeFromDb.id" title="delete">Smazat</a></td>
+                        }
+                    }
+                    else
+                    {
+                        <td>
+                            <a asp-area="Identity" asp-page="/Account/Login" asp-route-returnUrl="@(path)@(urlParam)">Připojit se</a>
+                        </td>
+                    }
 
-                @if (routeFromDb.connected == false)
-                {
-                    <td><a href="#" id="@routeFromDb.id" title="join">Připojit se</a></td>
-                }
-                else if (routeFromDb.connected == true)
-                {
-                    <td><a href="#" id="@routeFromDb.id" title="leave">Odhlásit se</a></td>
-                }
-                else
-                {
-                    <td><a href="#" id="@routeFromDb.id" title="delete">Smazat</a></td>
-                }
-            </tr>
+                </tr>
 
             }
         </tbody>
@@ -52,13 +69,14 @@
 }
 else
 {
-
-    <div class="col-4 mx-auto mt-auto">
-        <div class="card card-body mb-2 ,mt-5">
-            @TempData["EmptyErrMessage"].ToString()
+    @if (TempData["EmptyErrMessage"] != null)
+    {
+        <div class="col-4 mx-auto mt-auto">
+            <div class="card card-body mb-2 ,mt-5">
+                @TempData["EmptyErrMessage"].ToString()
+            </div>
         </div>
-    </div>
-
+    }
 
 
 
@@ -67,24 +85,23 @@ else
 <script src="~/lib/jquery/jquery.js"></script>
 <script>
 
-
-    $('a[title="join"]').click(function () {
+    $(document).on("click", 'a[title="join"]', function () {
         var link = $(this);
 
-        $.ajax({ //send request to find city/street
-
+        $.ajax({
             url: "/Route/JoinRoute",
             type: "POST",
             data: { id: link.attr("id") },  //data send to controller
             success: function () {
+                link.closest("tr").find("#freePlaces").find("span").text(parseInt(link.closest("tr").find("#freePlaces").text()) - 1);
                 link.attr("title", "leave");
                 link.text("Odhlásit se");
+
             }
         });
     });
 
-
-    $('a[title="leave"]').click(function () {
+    $(document).on("click", 'a[title="leave"]', function () {
         var link = $(this);
 
         $.ajax({ //send request to find city/street
@@ -93,14 +110,16 @@ else
             type: "POST",
             data: { id: link.attr("id") },  //data send to controller
             success: function () {
+                link.closest("tr").find("#freePlaces").find("span").text(parseInt(link.closest("tr").find("#freePlaces").text()) + 1);
                 link.attr("title", "join");
                 link.text("Přihásit se");
+
             }
         });
     });
 
 
-  $('a[title="delete"]').click(function () {
+    $('a[title="delete"]').click(function () {
         var link = $(this);
 
         $.ajax({ //send request to find city/street
@@ -110,7 +129,7 @@ else
             data: { id: link.attr("id") },  //data send to controller
             success: function () {
                 link.parent().parent().hide();
-               
+
             }
         });
     });

@@ -85,14 +85,10 @@
     });
 
     //save car
-    $(document).on("click", '[title="SaveButton"]', function () {
-        console.log("Save click");
+    $(document).on("click", '[title="SaveButton"]', function () { 
         var topElement = $(this).closest("#card");
         var form = $(this).closest("#card-body").find("form");
-        console.log(form);
-
         var formData = new FormData();
-        console.log(form.find("input[name=brand]").val());
         formData.append("id", form.find("input[name=id]").val());
         formData.append("brand", form.find("input[name=brand]").val());
         formData.append("model", form.find("input[name=model]").val());
@@ -100,38 +96,22 @@
         formData.append("color", form.find("input[name=color]").val());
         formData.append("spz", form.find("input[name=spz]").val());
         formData.append("file", form.find("#fileInput").prop("files")[0]);
+
         
-
-     
-
         var request = new XMLHttpRequest();
+        request.responseType = "document";
         request.open("POST", "/Car/Add");
         request.send(formData);
- 
 
         request.onload = function () {
             if (request.status == 200) {
-                form.find("intput[title=id]").attr("value", request.responseText);
-                form.find("input").addClass("no-border");
-                form.find("input").attr("readonly", "");
-                form.find("textarea").attr("readonly", "");
-                form.find("button").addClass("d-none");
-                form.find('[title="EditButton"]').removeClass("d-none");
-                form.find('[title="DeleteButton"]').removeClass("d-none");
-                topElement.find("#dragArea").addClass("d-none");
-                topElement.find(".dragImage").removeClass("dragImageEdit");
-                topElement.find(".dragImage").detach().prependTo(topElement);
+                topElement.html(this.responseXML.getElementById("card").innerHTML);
             }
         };
-
-
-
-
     });
 
     //delete car
     $(document).on("click", '[title="DeleteButton"]', function (event) {
-        console.log("Delete click");
 
         var cardbody = $(this).closest("#card");
         $.ajax({
@@ -149,7 +129,6 @@
     //add new car
     $(document).ready(function () {
         $('button[id="add"]').click(function () {
-            console.log("New car click");
 
             $.ajax({
                 url: "/Car/AddEmpty",
@@ -187,8 +166,6 @@
 
 
         $(document).on("drop", "#dragArea", function (event) {
-            console.log("Drop");
-
             event.preventDefault();
             this.className = "dragArea";
             var id = $(this).parent().find("form");
@@ -197,11 +174,8 @@
         });
 
         $(document).on("dragleave", "#dragArea", function () {
-
             this.className = "dragArea";
-
         });
-        //    };
 
     });
 </script>
